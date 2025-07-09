@@ -1,0 +1,486 @@
+.carousel-img {
+    width: 100%;
+    height: 657px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Tombol indikator */
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #797979;
+    margin: 0 6px;
+    opacity: 0.6;
+    border: none;
+}
+
+.carousel-indicators .active {
+    background-color: #ffffff;
+    opacity: 1;
+}
+
+.carousel-section {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.carousel-item {
+    transition: transform 1s ease-in-out;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.features-section {
+    display: flex;
+    justify-content: center;
+    background-color: #d7e7ff; /* Biru muda dari desain */
+}
+
+.features-container {
+    display: flex;
+    width: 100%;
+    padding: 15px 72px; /* Kontrol tinggi dari sini */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+}
+
+.check-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.ingredient-carousel-section {
+    padding: 50px 0;
+    background-color: #fff;
+}
+
+.ingredient-carousel {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Judul */
+.section-title {
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+.section-title .highlight-text {
+    color: #557fff;
+}
+
+/* Tab Navigasi */
+.ingredient-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    background-color: transparent;
+    border: none;
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 16px;
+    color: #828282;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    color: #557fff;
+}
+
+/* Gambar Carousel */
+.carousel-img-ingredients {
+    width: 471.5px;
+    height: 263px;
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Judul Bahan */
+.ingredient-title {
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: start-flex;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+/* Deskripsi */
+.ingredient-description {
+    width: 369px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Avenir LT Std", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #828282;
+}
+
+.ingredient-description p {
+    margin-bottom: 8px;
+}
+
+/* Baca Selengkapnya */
+.read-more {
+    color: #373737;
+    font-weight: 600;
+    font-family: "Avenir LT Std", sans-serif;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.read-more:hover {
+    color: #557fff;
+}
+
+/* Tombol panah */
+.carousel-control-next,
+.carousel-control-prev {
+    width: auto !important; /* Hindari tombol meluas default Bootstrap */
+    height: auto;
+    padding: 0;
+    background: none;
+    border: none;
+    opacity: 1;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-next {
+    right: 72px;
+}
+
+.carousel-control-prev {
+    left: 72px;
+}
+
+.carousel-control-next span,
+.carousel-control-prev span {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white; /* atau transparent */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* opsional: efek bayangan */
+}
+
+/* Section Wrapper */
+.skin-concern-section {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+/* Title */
+.skin-title {
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+    text-align: left;
+}
+
+.skin-highlight {
+    color: #557fff;
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+}
+
+/* Description Text */
+.skin-description {
+    color: #727272;
+    font-family: "Avenir LT Std", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    margin-top: -8px;
+}
+
+/* Card Container - Grid for 5 items */
+.skin-card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+}
+
+/* Card Styling */
+.skin-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Image Placeholder */
+.skin-image {
+    width: 240px;
+    height: 240px;
+    border-radius: 10px;
+    background: #d9d9d9;
+    flex-shrink: 0;
+    margin-bottom: 15px;
+}
+
+/* Card Title */
+.skin-card-title {
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 3px;
+}
+
+/* Card Text */
+.skin-card-text {
+    font-family: "Avenir LT Std", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #727272;
+    margin-bottom: 40px;
+}
+
+/* Card Link */
+.skin-link {
+    font-family: "Avenir LT Std", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.skin-link:hover {
+    color: #557fff;
+}
+
+/* glow content */
+
+.glow-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.glow-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.glow-title {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Quincy CF", serif;
+    color: #000;
+}
+
+.glow-highlight {
+    color: #557fff;
+}
+
+.glow-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 17px;
+    margin-top: 20px;
+}
+
+.glow-tab-img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    opacity: 0.3;
+    transition: opacity 1s;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.glow-tab-img.active {
+    opacity: 1;
+}
+
+/* ========== Carousel Wrapper and Track ========== */
+.glow-carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.glow-track {
+    display: flex;
+    transition: transform 0.8s ease-in-out;
+    will-change: transform;
+}
+
+/* ========== Individual Slides ========== */
+.glow-main {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ========== Image Box ========== */
+.glow-image-box {
+    position: relative;
+    width: 299.062px;
+    height: 368.973px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.glow-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+.glow-img-label {
+    position: absolute;
+    bottom: -10px;
+    left: 15px;
+    color: white;
+    font-size: 12px;
+    font-family: serif;
+    pointer-events: none;
+}
+
+/* ========== Info Box ========== */
+.glow-info-box {
+    background-color: #d5e5ff;
+    border-radius: 10px;
+    padding-top: 70px;
+    padding-left: 45px;
+    padding-right: 42px;
+    margin-left: 20px;
+    width: 649.905px;
+    height: 369px;
+    position: relative;
+}
+
+.glow-subtitle {
+    font-family: "Quincy CF", serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.glow-text {
+    font-size: 14px;
+    font-family: "Avenir LT Std", sans-serif;
+    margin-bottom: 8px;
+}
+
+.glow-author {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Avenir LT Std", sans-serif;
+    margin-bottom: 12px;
+}
+
+.glow-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.glow-tag {
+    background-color: #8cb3f3;
+    color: white;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-family: "Quincy CF", serif;
+}
+
+.glow-product {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 67.99px;
+    height: 128px;
+}
+
+.glow-control-prev,
+.glow-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Posisi kiri dan kanan */
+.glow-control-prev {
+    left: 10px;
+}
+
+.glow-control-next {
+    right: 10px;
+}
+
+/* Tombol lingkaran */
+.glow-arrow {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    color: #000;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.glow-arrow:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+}

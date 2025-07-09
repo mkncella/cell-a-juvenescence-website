@@ -1,0 +1,56 @@
+.navbar {
+    height: 125px;
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.25); /* Figma shadow */
+    border-bottom: none; /* opsional, kalau sudah pakai shadow tidak perlu garis */
+}
+
+
+.logo-wrapper {
+    margin-bottom: 12px; /* beri jarak antara logo dan menu */
+}
+
+.logo-img {
+    width: 125.696px;
+    height: 49px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.menu-wrapper a {
+    height: 39px;
+    line-height: 39px;
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-style: normal;
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+.menu-wrapper a:hover {
+    color: #557fff;
+}
+
+.profile-wrapper {
+    position: absolute;
+    top: 40%;
+    right: 72px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: opacity 0.3s;
+}
+
+.profile-wrapper a:hover .profile-icon {
+    opacity: 0.7;
+}
+
