@@ -44,7 +44,7 @@ body {
 .features-container {
     display: flex;
     width: 100%;
-    padding: 15px 72px; /* Kontrol tinggi dari sini */
+    padding: 15px 113px; /* Kontrol tinggi dari sini */
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -55,7 +55,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-family: "Quincy CF", serif;
     font-style: normal;
     font-size: 15px;
     font-weight: 600;
@@ -81,7 +81,7 @@ body {
 
 /* Judul */
 .section-title {
-    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-family: "Quincy CF", serif;
     font-size: 40px;
     font-weight: 700;
     color: #000;
@@ -103,7 +103,7 @@ body {
 .tab-btn {
     background-color: transparent;
     border: none;
-    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-family: "Quincy CF", serif;
     font-size: 18px;
     font-weight: 600;
     padding: 8px 16px;
@@ -129,7 +129,7 @@ body {
 
 /* Judul Bahan */
 .ingredient-title {
-    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-family: "Quincy CF", serif;
     font-size: 32px;
     font-weight: 400;
     text-align: start-flex;
@@ -205,13 +205,13 @@ body {
 
 /* Section Wrapper */
 .skin-concern-section {
-    padding: 60px 0;
     background-color: #fff;
+    justify-content: center;
 }
 
 /* Title */
 .skin-title {
-    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-family: "Quincy CF", serif;
     font-size: 40px;
     font-weight: 700;
     color: #000;
@@ -220,7 +220,7 @@ body {
 
 .skin-highlight {
     color: #557fff;
-    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-family: "Quincy CF", serif;
 }
 
 /* Description Text */
@@ -237,7 +237,7 @@ body {
 .skin-card-wrapper {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 30px;
+    gap: 23px;
 }
 
 /* Card Styling */
@@ -259,7 +259,7 @@ body {
 
 /* Card Title */
 .skin-card-title {
-    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-family: "Quincy CF", serif;
     font-size: 16px;
     font-weight: 600;
     color: #000;
@@ -482,5 +482,149 @@ body {
 
 .glow-arrow:hover {
     background: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.homearticle-section {
+    padding: 50px 113px;
+}
+
+.homearticle-container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.homearticle-heading {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.homearticle-highlight {
+    color: #3366ff;
+}
+
+.homearticle-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.homearticle-main {
+    position: relative;
+    overflow: hidden;
+    width: 801px;
+    height: 410px;
+}
+
+.homearticle-sub {
+    position: relative;
+    overflow: hidden;
+    width: 471px;
+    height: 194px;
+    margin-bottom: 25px;
+}
+
+.homearticle-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.homearticle-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.homearticle-date {
+    font-family: "Avenir LT Std", sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    font-style: normal;
+    line-height: normal;
+    margin-bottom: 8px;
+}
+
+.homearticle-title {
+    font-family: "Quincy CF", serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.homearticle-title.small {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: -5px;
+}
+
+.program-wrapper {
+    display: flex;
+    gap: 160px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 50px auto;
+    margin-bottom: 100px;
+    max-width: 1440px;
+}
+
+.program-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+}
+
+.program-image {
+    width: 633px;
+    height: 414px;
+    object-fit: cover;
+}
+
+.program-description {
+    display: flex;
+    width: 473px;
+    height: 289px;
+    padding: 45px 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #d5e5ff;
+    text-align: center;
+    margin-top: -90px;
+    transition: all 0.3s ease-in-out;
+}
+
+.program-title{
+    font-family: "Quincy CF", serif;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.program-text{
+    font-family: "Avenir LT Std", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.program-title,
+.program-text {
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
+/* Hover effect */
+.program-description:hover .program-title {
+    transform: scale(1.07);
+}
+
+.program-description:hover .program-text {
     transform: scale(1.05);
 }

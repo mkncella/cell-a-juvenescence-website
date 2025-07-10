@@ -109,7 +109,9 @@
                             <div class="col-md-4">
                                 <h4 class="ingredient-title">Fulvic Acid</h4>
                                 <div class="ingredient-description">
-                                    <p>Deskripsi Fulvic Acid di sini...</p>
+                                    <p>Lorem ipsum dolor sit amet consectetur. Condimentum sapien ipsum etiam pharetra nec
+                                        in sit. Amet pulvinar ipsum a quis commodo purus interdum a sed. Diam sed tellus sed
+                                        et elementum nec non venenatis. Ipsum lobortis odio mi sagittis...</p>
                                     <a href="#" class="read-more">Baca Selengkapnya ></a>
                                 </div>
                             </div>
@@ -125,7 +127,9 @@
                             <div class="col-md-4">
                                 <h4 class="ingredient-title">Filmexel</h4>
                                 <div class="ingredient-description">
-                                    <p>Deskripsi Filmexel di sini...</p>
+                                    <p>Lorem ipsum dolor sit amet consectetur. Condimentum sapien ipsum etiam pharetra nec
+                                        in sit. Amet pulvinar ipsum a quis commodo purus interdum a sed. Diam sed tellus sed
+                                        et elementum nec non venenatis. Ipsum lobortis odio mi sagittis...</p>
                                     <a href="#" class="read-more">Baca Selengkapnya ></a>
                                 </div>
                             </div>
@@ -319,6 +323,73 @@
                 <span class="glow-arrow" aria-hidden="true">❯</span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
+    </section>
+
+    <section class="homearticle-section">
+        <div class="homearticle-container">
+            <h2 class="homearticle-heading">
+                Latest <span class="homearticle-highlight">News</span>
+            </h2>
+
+            <div class="homearticle-grid">
+                <!-- Artikel Utama -->
+                <div class="homearticle-main">
+                    <img src="/images/article1.jpg" alt="Main Article" class="homearticle-image" />
+                    <div class="homearticle-overlay">
+                        <p class="homearticle-date">4 June 2025</p>
+                        <h3 class="homearticle-title">Kulit Sehat Alami: Cara Merawat Wajah Tanpa Ribet</h3>
+                    </div>
+                </div>
+
+                <!-- Artikel Kecil -->
+                <div class="homearticle-side">
+                    <div class="homearticle-sub">
+                        <img src="/images/article2.jpg" alt="Sub Article 1" class="homearticle-image" />
+                        <div class="homearticle-overlay">
+                            <p class="homearticle-date">4 June 2025</p>
+                            <h3 class="homearticle-title small">
+                                Skincare Malam: Rutinitas Penting Sebelum Tidur yang Sering Diabaikan
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="homearticle-sub">
+                        <img src="/images/article3.jpg" alt="Sub Article 2" class="homearticle-image" />
+                        <div class="homearticle-overlay">
+                            <p class="homearticle-date">4 June 2025</p>
+                            <h3 class="homearticle-title small">
+                                5 Bahan Alami yang Ampuh Cerahkan Wajah Kusam
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program-wrapper">
+        <div class="program-card">
+            <img src="/images/reseller.jpg" alt="Reseller Image" class="program-image">
+            <div class="program-description">
+                <p class="program-label">Bergabung Sebagai</p>
+                <h2 class="program-title">Reseller</h2>
+                <p class="program-text">
+                    Lorem ipsum dolor sit amet consectetur. Gravida adipiscing id purus quis morbi pretium cursus.
+                    At faucibus tempus enim bibendum mi habitasse vulputate mauris urna. Id eget et egestas etiam velit.
+                </p>
+            </div>
+        </div>
+
+        <div class="program-card">
+            <img src="/images/affiliate.jpg" alt="Affiliate Image" class="program-image">
+            <div class="program-description">
+                <p class="program-label">Bergabung Sebagai</p>
+                <h2 class="program-title">Affiliate</h2>
+                <p class="program-text">
+                    Lorem ipsum dolor sit amet consectetur. Gravida adipiscing id purus quis morbi pretium cursus.
+                    At faucibus tempus enim bibendum mi habitasse vulputate mauris urna. Id eget et egestas etiam velit.
+                </p>
+            </div>
         </div>
     </section>
 
