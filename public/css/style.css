@@ -1,7 +1,12 @@
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
     height: 125px;
-    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.25); /* Figma shadow */
-    border-bottom: none; /* opsional, kalau sudah pakai shadow tidak perlu garis */
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25);
 }
 
 .logo-wrapper {
@@ -31,6 +36,10 @@
 
 .menu-wrapper a:hover {
     color: #557fff;
+}
+
+.menu-wrapper a.active {
+    color: #557fff; /* warna biru khusus menu aktif */
 }
 
 .profile-wrapper {
@@ -134,4 +143,65 @@
     color: #000;
     font-size: 14px;
     font-family: "avenir lt std", sans-serif;
+}
+
+/* Wrapper Dropdown */
+.dropdown-programs {
+    position: relative;
+    display: inline-block;
+}
+
+/* Teks utama (Our Programs) */
+.menu-link-programs {
+    height: 39px;
+    line-height: 39px;
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: "FONTSPRING DEMO - Quincy CF", serif;
+    font-style: normal;
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Konten Dropdown */
+.dropdown-programs-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    min-width: 141px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+/* Tautan di dalam dropdown */
+.dropdown-programs-content a {
+    display: block;
+    font-family: "FONTSPRING DEMO - Quincy CF", sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #000;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    padding: 0 16px 8px 25px;
+}
+
+
+
+/* Hover effect pada item */
+.dropdown-programs-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Tampilkan dropdown saat hover */
+.dropdown-programs:hover .dropdown-programs-content {
+    display: block;
+}
+
+.menu-link-programs:hover {
+    color: #245bff;
 }

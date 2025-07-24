@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Cell-a Juvenescence Indonesia')
 
 @section('content')
     <!-- Section luar carousel, biar bisa full-width -->
@@ -334,34 +334,40 @@
 
             <div class="homearticle-grid">
                 <!-- Artikel Utama -->
-                <div class="homearticle-main">
-                    <img src="/images/article1.jpg" alt="Main Article" class="homearticle-image" />
-                    <div class="homearticle-overlay">
-                        <p class="homearticle-date">4 June 2025</p>
-                        <h3 class="homearticle-title">Kulit Sehat Alami: Cara Merawat Wajah Tanpa Ribet</h3>
+                <a href="/" style="text-decoration: none; color: inherit;">
+                    <div class="homearticle-main">
+                        <img src="/images/article1.jpg" alt="Main Article" class="homearticle-image" />
+                        <div class="homearticle-overlay">
+                            <p class="homearticle-date">4 June 2025</p>
+                            <h3 class="homearticle-title">Kulit Sehat Alami: Cara Merawat Wajah Tanpa Ribet</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Artikel Kecil -->
                 <div class="homearticle-side">
-                    <div class="homearticle-sub">
-                        <img src="/images/article2.jpg" alt="Sub Article 1" class="homearticle-image" />
-                        <div class="homearticle-overlay">
-                            <p class="homearticle-date">4 June 2025</p>
-                            <h3 class="homearticle-title small">
-                                Skincare Malam: Rutinitas Penting Sebelum Tidur yang Sering Diabaikan
-                            </h3>
+                    <a href="/" style="text-decoration: none; color: inherit;">
+                        <div class="homearticle-sub">
+                            <img src="/images/article2.jpg" alt="Sub Article 1" class="homearticle-image" />
+                            <div class="homearticle-overlay">
+                                <p class="homearticle-date">4 June 2025</p>
+                                <h3 class="homearticle-title small">
+                                    Skincare Malam: Rutinitas Penting Sebelum Tidur yang Sering Diabaikan
+                                </h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="homearticle-sub">
-                        <img src="/images/article3.jpg" alt="Sub Article 2" class="homearticle-image" />
-                        <div class="homearticle-overlay">
-                            <p class="homearticle-date">4 June 2025</p>
-                            <h3 class="homearticle-title small">
-                                5 Bahan Alami yang Ampuh Cerahkan Wajah Kusam
-                            </h3>
+                    </a>
+                    <a href="/" style="text-decoration: none; color: inherit;">
+                        <div class="homearticle-sub">
+                            <img src="/images/article3.jpg" alt="Sub Article 2" class="homearticle-image" />
+                            <div class="homearticle-overlay">
+                                <p class="homearticle-date">4 June 2025</p>
+                                <h3 class="homearticle-title small">
+                                    5 Bahan Alami yang Ampuh Cerahkan Wajah Kusam
+                                </h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>    
                 </div>
             </div>
         </div>
@@ -370,26 +376,31 @@
     <section class="program-wrapper">
         <div class="program-card">
             <img src="/images/reseller.jpg" alt="Reseller Image" class="program-image">
-            <div class="program-description">
-                <p class="program-label">Bergabung Sebagai</p>
-                <h2 class="program-title">Reseller</h2>
-                <p class="program-text">
-                    Lorem ipsum dolor sit amet consectetur. Gravida adipiscing id purus quis morbi pretium cursus.
-                    At faucibus tempus enim bibendum mi habitasse vulputate mauris urna. Id eget et egestas etiam velit.
-                </p>
-            </div>
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <div class="program-description">
+                    <p class="program-label">Bergabung Sebagai</p>
+                    <h2 class="program-title">Reseller</h2>
+                    <p class="program-text">
+                        Lorem ipsum dolor sit amet consectetur. Gravida adipiscing id purus quis morbi pretium cursus.
+                        At faucibus tempus enim bibendum mi habitasse vulputate mauris urna. Id eget et egestas etiam velit.
+                    </p>
+                </div>
+            </a>
         </div>
+
 
         <div class="program-card">
             <img src="/images/affiliate.jpg" alt="Affiliate Image" class="program-image">
-            <div class="program-description">
-                <p class="program-label">Bergabung Sebagai</p>
-                <h2 class="program-title">Affiliate</h2>
-                <p class="program-text">
-                    Lorem ipsum dolor sit amet consectetur. Gravida adipiscing id purus quis morbi pretium cursus.
-                    At faucibus tempus enim bibendum mi habitasse vulputate mauris urna. Id eget et egestas etiam velit.
-                </p>
-            </div>
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <div class="program-description">
+                    <p class="program-label">Bergabung Sebagai</p>
+                    <h2 class="program-title">Affiliate</h2>
+                    <p class="program-text">
+                        Lorem ipsum dolor sit amet consectetur. Gravida adipiscing id purus quis morbi pretium cursus.
+                        At faucibus tempus enim bibendum mi habitasse vulputate mauris urna. Id eget et egestas etiam velit.
+                    </p>
+                </div>
+            </a>
         </div>
     </section>
 

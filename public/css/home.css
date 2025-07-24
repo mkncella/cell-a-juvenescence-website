@@ -33,6 +33,7 @@
 
 body {
     overflow-x: hidden;
+    margin-top: 125px;
 }
 
 .features-section {
@@ -495,7 +496,8 @@ body {
 }
 
 .homearticle-heading {
-    font-size: 32px;
+    font-family: "Quincy CF", serif;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 24px;
 }
@@ -522,6 +524,16 @@ body {
     width: 471px;
     height: 194px;
     margin-bottom: 25px;
+}
+
+.homearticle-main img,
+.homearticle-sub img {
+    transition: all 0.3s ease;
+}
+
+.homearticle-main:hover img,
+.homearticle-sub:hover img {
+    filter: brightness(0.7); /* lebih gelap */
 }
 
 .homearticle-image {
@@ -602,13 +614,13 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-.program-title{
+.program-title {
     font-family: "Quincy CF", serif;
     font-weight: 600;
     font-size: 40px;
 }
 
-.program-text{
+.program-text {
     font-family: "Avenir LT Std", sans-serif;
     font-weight: 400;
     font-size: 14px;

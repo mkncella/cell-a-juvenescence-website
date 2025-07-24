@@ -17,8 +17,8 @@
         <div class="footer-section">
             <h3 class="footer-title">About</h3>
             <ul class="footer-list">
-                <li>Term of Service</li>
-                <li>Privacy Policy</li>
+                <li><a href="/term-of-service" style="text-decoration: none; color: inherit;">Term of Service</a></li>
+                <li><a href="/privacy-policy" style="text-decoration: none; color: inherit;">Privacy Policy</a></li>
             </ul>
         </div>
 

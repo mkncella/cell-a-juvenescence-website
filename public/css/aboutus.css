@@ -1,0 +1,231 @@
+body {
+    overflow-x: hidden;
+    margin-top: 125px;
+}
+
+.aboutcella-section {
+    background: url("/images/cloud.png");
+    background-size: auto 118%;
+    height: 415.224px;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+    font-family: "Avenir", sans-serif;
+}
+
+.aboutcella-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    margin-top: -25px;
+}
+
+.aboutcella-heading {
+    font-size: 32px;
+    font-family: "Quincy CF", serif;
+    font-weight: 400;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.aboutcella-logo {
+    width: 125.696px;
+    height: 49px;
+    object-fit: contain;
+}
+
+.aboutcella-subheading {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    font-family: "Quincy CF", serif;
+}
+
+.aboutcella-text {
+    font-family: "Quincy CF", serif;
+    font-size: 32px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.confidence-section {
+    background-color: #fff;
+}
+
+.confidence-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1440px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.confidence-text {
+    flex: 1 1 500px;
+    max-width: 600px;
+}
+
+.confidence-title {
+    font-family: "Quincy CF", serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 24px;
+}
+
+.confidence-paragraph {
+    font-size: 18px;
+    line-height: 1.8;
+    font-family: "Quincy CF", serif;
+    color: #333;
+}
+
+.confidence-image {
+    flex: 1 1 500px;
+    max-width: 600px;
+}
+
+.confidence-image img {
+    width: 646px;
+    height: 672px;
+    object-fit: cover;
+}
+
+.commitment-section2 {
+    background-color: #fff;
+}
+
+.commitment-wrapper2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    max-width: 1440px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.commitment-text2 {
+    flex: 1 1 500px;
+    max-width: 600px;
+}
+
+.commitment-title2 {
+    font-family: "Quincy CF", serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 24px;
+    margin-left: 70px;
+}
+
+.commitment-paragraph2 {
+    font-size: 18px;
+    line-height: 1.8;
+    font-family: "Quincy CF", serif;
+    color: #333;
+    margin-left: 70px;
+}
+
+.commitment-image2 {
+    flex: 1 1 500px;
+    max-width: 600px;
+}
+
+.commitment-image2 img {
+    width: 647.72px;
+    height: 629px;
+    object-fit: cover;
+}
+
+.program-pillar-wrapper {
+    display: flex;
+    max-width: 1356px;
+    margin: 0 auto;
+    height: 672px;
+}
+
+.program-pillar-text {
+    flex: 1;
+    padding-left: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Avenir", sans-serif;
+}
+
+.program-pillar-text h2 {
+    font-size: 32px;
+    font-family: "Quincy CF", serif;
+    margin-bottom: 32px;
+    line-height: 1.4;
+}
+
+.program-pillar-text p {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.program-pillar-box {
+    width: 648px;
+    height: 672px;
+    background: #d9d9d9;
+}
+
+.more-wrapper {
+    display: flex;
+    max-width: 1440px;
+    margin-left: 142px;
+    height: 672px;
+}
+
+.more-text {
+    flex: 1;
+    padding-left: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Avenir", sans-serif;
+}
+
+.more-text h2 {
+    font-size: 32px;
+    font-family: "Quincy CF", serif;
+    margin-bottom: 32px;
+    line-height: 1.4;
+}
+
+.more-text p {
+    width: 500px;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.more-box {
+    width: 648px;
+    height: 672px;
+    background: #d9d9d9;
+}
+
+.aboutus-banner {
+    width: 1690px;
+    height: 672px;
+    overflow: hidden;
+    margin: 0 auto; /* agar center di halaman */
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.aboutus-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* menjaga proporsi gambar tanpa merusak layout */
+    display: block;
+}
