@@ -493,9 +493,11 @@
             showSlide(index + 1);
         }
 
+        const delayForNextSlide = 5000;
+
         function resetAutoSlide() {
             clearInterval(intervalId);
-            intervalId = setInterval(nextSlide, 3000);
+            intervalId = setInterval(nextSlide, delayForNextSlide);
         }
 
         // Event Listeners
@@ -508,7 +510,7 @@
         // Init on load
         window.addEventListener('load', () => {
             showSlide(0);
-            intervalId = setInterval(nextSlide, 3000);
+            intervalId = setInterval(nextSlide, delayForNextSlide);
         });
     </script>
 

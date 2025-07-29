@@ -77,9 +77,4 @@
         <img src="/images/aboutus-banner.jpg" alt="About Us Banner">
     </section>
 
-
-
-
-
-
 @endsection

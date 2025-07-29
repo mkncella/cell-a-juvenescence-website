@@ -9,6 +9,14 @@
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    @php
+        $routeName = request()->path(); // contoh: 'dashboard', 'posts.edit'
+    @endphp
+
+    {{-- <link rel="stylesheet" href="{{ asset("css/{$routeName}.css") }}"> --}}
+
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -37,7 +45,8 @@
         // (opsional) panggil kode inisialisasi langsung
         // contoh: const modal = new bootstrap.Modal(...);
     </script> --}}
-     <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1/dist/es-module-shims.min.js" crossorigin="anonymous"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1/dist/es-module-shims.min.js" crossorigin="anonymous">
+    </script>
     <script type="importmap">
     {
       "imports": {
@@ -47,12 +56,12 @@
     }
     </script>
     <script type="module">
-      import * as bootstrap from 'bootstrap'
+        import * as bootstrap from 'bootstrap'
 
-    //   new bootstrap.Popover(document.getElementById('popoverButton'))
+        //   new bootstrap.Popover(document.getElementById('popoverButton'))
 
-      console.log("boot", bootstrap)
-      window.bootstrap = bootstrap
+        console.log("boot", bootstrap)
+        window.bootstrap = bootstrap
     </script>
     {{-- Navbar --}}
     @include('components.navbar')
