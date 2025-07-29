@@ -404,20 +404,28 @@
         </div>
     </section>
 
-    <script>
+   
+
+    <script type="module" defer>
+
+        const { bootstrap } = window
+  
         // Inisialisasi carousel jika belum otomatis
         const myCarouselElement = document.querySelector('#mainCarousel');
 
         // Inisialisasi instance Bootstrap Carousel
         const carousel = new bootstrap.Carousel(myCarouselElement, {
-            interval: 3000, // Slide tiap 3 detik
+            interval: 8000, // Slide tiap 3 detik
             ride: 'carousel', // Aktifkan otomatis
             pause: false, // Jangan berhenti saat hover
             wrap: true // Loop ke awal setelah slide terakhir
         });
     </script>
 
-    <script>
+    <script type="module" defer>
+
+        const { bootstrap } = window
+
         document.addEventListener('DOMContentLoaded', function() {
             const tabButtons = document.querySelectorAll('.tab-btn');
             const carouselEl = document.querySelector('#ingredientCarousel');

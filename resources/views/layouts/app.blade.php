@@ -23,6 +23,37 @@
 
 <body>
 
+    {{-- <script type="module">
+        console.log("runnn")
+        import * as bootstrap from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.esm.min.js';
+
+        // Buat tersedia di script non-module
+
+        
+        console.log({ bootstrap })
+
+        window.bootstrap = bootstrap;
+
+        // (opsional) panggil kode inisialisasi langsung
+        // contoh: const modal = new bootstrap.Modal(...);
+    </script> --}}
+     <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1/dist/es-module-shims.min.js" crossorigin="anonymous"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.min.js",
+        "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.esm.min.js"
+      }
+    }
+    </script>
+    <script type="module">
+      import * as bootstrap from 'bootstrap'
+
+    //   new bootstrap.Popover(document.getElementById('popoverButton'))
+
+      console.log("boot", bootstrap)
+      window.bootstrap = bootstrap
+    </script>
     {{-- Navbar --}}
     @include('components.navbar')
 
@@ -32,7 +63,8 @@
     </main>
 
     <!-- JS Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
+
     @include('components.footer')
 </body>
 
