@@ -9,7 +9,7 @@
         <div class="footer-section">
             <h3 class="footer-title">More Info</h3>
             <ul class="footer-list">
-                <li>FAQ</li>
+                <li><a href="/faq">FAQ</a></li>
                 <li>Tips</li>
             </ul>
         </div>

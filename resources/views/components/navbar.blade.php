@@ -18,7 +18,7 @@
         <!-- Baris 2: Menu -->
         <div class="menu-wrapper d-flex justify-content-center gap-4 flex-wrap">
             <a href="/about-us">About Us</a>
-            <a href="#">Essentials</a>
+            <a href="/essentials">Essentials</a>
             <div class="dropdown-programs">
                 <span class="menu-link-programs">Our Programs</span>
                 <div class="dropdown-programs-content">
