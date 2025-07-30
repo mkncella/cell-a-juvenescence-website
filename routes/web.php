@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResellerController;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -11,7 +12,7 @@ Route::get('/about-us', function () {
     return view('pages.about-us');
 });
 
-Route::get('/essentials', function () {
+Route::get('/essentials', function (Request $request) {
 
     $skin_concerns = [
         [
@@ -19,7 +20,7 @@ Route::get('/essentials', function () {
             "name" => "Kulit Berkomedo"
         ],
         [
-            "id" => 1,
+            "id" => 2,
             "name" => "Kulit Berjerawat"
         ],
         [
@@ -53,7 +54,7 @@ Route::get('/essentials', function () {
             "date" => "2025-08-22",
             "image" => "product-1.jpg",
             "category" => "Cleanser",
-            "list_skin_concern_id" => [1,2,3,4,5]
+            "list_skin_concern_id" => [1,2,3,4]
         ],
         [
             "name" => "Cell-a",
@@ -187,6 +188,7 @@ Route::get('/essentials', function () {
         ],
     ];
 
+    // apply skin_concern to product
     $products = array_map(function ($product) use ($skin_concerns) {
         $matched_concerns = array_filter($skin_concerns, function ($concern) use ($product) {
             return in_array($concern['id'], $product['list_skin_concern_id']);
@@ -198,13 +200,13 @@ Route::get('/essentials', function () {
     }, $products);
 
 
-    // apply skin_concern to product
-
-
     // get categories
     $categories = collect($products)->pluck('category')->unique()->values()->all();
 
-    return view('pages.essentials', ["products" => $products, "categories" => $categories]);
+    // get arg_concerns
+    $arg_concerns = explode(",", $request->query("concerns"));
+
+    return view('pages.essentials', ["products" => $products, "categories" => $categories, "skin_concerns" => $skin_concerns, "arg_concerns" => $arg_concerns]);
 });
 
 Route::get('/faq', function () {
@@ -284,7 +286,9 @@ Route::get('/faq', function () {
     // get categories
     $categories = collect($topics)->pluck('category')->unique()->values()->all();
 
-    return view('pages.faq', ["topics" => $topics, "categories" => $categories]);
+
+
+    return view('pages.faq', ["topics" => $topics, "categories" => $categories,]);
 });
 
 

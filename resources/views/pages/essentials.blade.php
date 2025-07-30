@@ -10,17 +10,57 @@
         </div>
     </section>
 
-    <section class="products-section flex gap-4 lg:gap-8 px-12 py-8">
-        <div class="filter-products flex flex-col gap-4">
-            <h3 class="text-xl font-bold">SkinCare</h3>
-            <ul class="list-none flex flex-col gap-2 justify-start !pl-0 ml-0">
-                @foreach ($categories as $c)
-                <li class="inline-flex justify-between items-center gap-8">
-                    <span>{{ ucfirst($c) }}</span>
-                    <span class="w-4 grid place-content-center transform rotate-90 aspect-square">&gt;</span>
-                </li>
-                @endforeach
-            </ul>
+    <section class="products-section flex gap-2 md:gap-4 lg:gap-8 px-12 py-8" x-data="() => ({
+        test: true,
+        arg_concerns: @js($arg_concerns),
+        filter_concerns: [],
+        init() {
+            {{-- console.log({ arg_concerns: this.arg_concerns }) --}}
+        },
+        uppering(text) {
+            return text?.replace(/^[a-z]/, (text) => text.toUpperCase())
+        },
+        toggleFilterConcern(name) {
+            if (!name) return
+
+            if (this.filter_concerns.includes(name)) {
+                this.filter_concerns = this.filter_concerns.filter((c) => c != name)
+            } else {
+                this.filter_concerns.push(name)
+            }
+        },
+    })">
+        <div class="filter-product flex flex-col gap-12">
+            <div class="filter-product-by-category flex flex-col md:gap-2">
+                <h3 class="text-xl font-bold">SkinCare</h3>
+                <ul class="list-none flex flex-col gap-2 justify-start !pl-0 ml-0">
+                    @foreach ($categories as $c)
+                    <li class="inline-flex justify-between items-center gap-4 md:!gap-8">
+                        <span>{{ ucfirst($c) }}</span>
+                        <span class="w-4 grid place-content-center transform rotate-90 aspect-square">&gt;</span>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            
+            <div
+                class="filter-product-by-concern flex flex-col md:gap-2"
+                x-data="() => ({
+                    skinConcerns: @js($skin_concerns)
+                })"
+                >
+                <h3 class="text-xl font-bold">Skin Concern</h3>
+                <ul class="list-none flex flex-col gap-2 justify-start !pl-0 ml-0">
+                    <template x-for="concern in skinConcerns" :key="concern.id">
+                    <li class="inline-flex justify-between items-center gap-4 md:!gap-8">
+                        <span x-text="concern.name"></span>
+                        <span class="w-4 grid place-content-center transform rotate-90 aspect-square">&gt;</span>
+                    </li>
+                    </template>
+                </ul>
+            </div>
+
+
         </div>
 
         @php
@@ -28,7 +68,7 @@
             $datetime_now = new DateTime($date);
         @endphp
 
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2 md:gap-4">
             <div class="card-list flex flex-wrap items-center justify-center w-full gap-4">
                 @foreach ($products as $product)
                     @php
@@ -41,7 +81,7 @@
                         $isNewProduct = $days < 30 & $days > 0;
     
                         if (!function_exists('rupiah')) {
-                            function rupiah($angka) {
+                            function rupiah($angka)  {
                                 return 'Rp ' . number_format($angka, 0, ',', '.');
                             }
                         }
@@ -127,6 +167,18 @@
                 <p class="bg-linear-to-r from-blue-500 via-blue-400 to-blue-700 bg-clip-text text-transparent">
                     Load More
                 </p>
+                {{-- <button
+  class="bg-gray-200 text-gray-700 hover:bg-blue-500 hover:text-white px-4 py-2 rounded"
+  style="
+    transition-property: background-color, color;
+    transition-duration: 300ms, 300ms;
+    transition-delay: 0ms, 300ms;
+  "
+>
+  Hover Me
+</button> --}}
+
+
 
             </div>
         </div>
