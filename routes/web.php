@@ -156,27 +156,27 @@ Route::get('/faq', function () {
             "qna" => [
                 [
                     "question" => "Apa saja jenis produk skincare yang tersedia?",
-                    "asnswer" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit eaque fugit sunt dolorem. Quasi incidunt excepturi asperiores! Accusamus, deleniti recusandae."
+                    "answer" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit eaque fugit sunt dolorem. Quasi incidunt excepturi asperiores! Accusamus, deleniti recusandae."
                 ],
                 [
                     "question" => "Apakah produk ini aman untuk semua jenis kulit?",
-                    "asnswer" => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias beatae eaque enim!"
+                    "answer" => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias beatae eaque enim!"
                 ],
                 [
                     "question" => "Apakah produk ini mengandung bahan yang berbahaya?",
-                    "asnswer" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat atque facilis delectus soluta! Totam amet, accusamus libero ab delectus nesciunt quo illum dolorum quos impedit modi reiciendis suscipit, alias voluptatem?"
+                    "answer" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat atque facilis delectus soluta! Totam amet, accusamus libero ab delectus nesciunt quo illum dolorum quos impedit modi reiciendis suscipit, alias voluptatem?"
                 ],
                 [
                     "question" => "Berapa kali sehari saya harus menggunakan menggunakan produk skincare?",
-                    "asnswer" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, odio assumenda earum alias id vero debitis, facere expedita, doloribus tempora saepe adipisci iure tempore ad?"
+                    "answer" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, odio assumenda earum alias id vero debitis, facere expedita, doloribus tempora saepe adipisci iure tempore ad?"
                 ],
                 [
                     "question" => "Bagaimana cara mengetahui apakah  saya alergi terhadap suatu produk?",
-                    "asnswer" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla explicabo ad dolor voluptates velit distinctio delectus minima eum ex ducimus consequatur aliquid nostrum quam iure nihil alias amet dicta quas, laboriosam totam neque, officia laudantium doloribus! Qui deleniti pariatur reiciendis."
+                    "answer" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla explicabo ad dolor voluptates velit distinctio delectus minima eum ex ducimus consequatur aliquid nostrum quam iure nihil alias amet dicta quas, laboriosam totam neque, officia laudantium doloribus! Qui deleniti pariatur reiciendis."
                 ],
                 [
                     "question" => "Bagaimana cara menyimpan produk skincare dengan benar?",
-                    "asnswer" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni quod at recusandae, consequatur eaque soluta sunt ex voluptas repudiandae, enim obcaecati quos!"
+                    "answer" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni quod at recusandae, consequatur eaque soluta sunt ex voluptas repudiandae, enim obcaecati quos!"
                 ],
             ],
         ],

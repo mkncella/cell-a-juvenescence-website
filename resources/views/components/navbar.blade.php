@@ -16,7 +16,7 @@
         </div>
 
         <!-- Baris 2: Menu -->
-        <div class="menu-wrapper d-flex justify-content-center gap-4 flex-wrap">
+        <div class="menu-wrapper flex justify-center gap-2">
             <a href="/about-us">About Us</a>
             <a href="/essentials">Essentials</a>
             <div class="dropdown-programs">
