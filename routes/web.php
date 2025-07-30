@@ -13,6 +13,37 @@ Route::get('/about-us', function () {
 
 Route::get('/essentials', function () {
 
+    $skin_concerns = [
+        [
+            "id" => 1,
+            "name" => "Kulit Berkomedo"
+        ],
+        [
+            "id" => 1,
+            "name" => "Kulit Berjerawat"
+        ],
+        [
+            "id" => 3,
+            "name" => "Kulit Kusam"
+        ],
+        [
+            "id" => 4,
+            "name" => "Kulit Sensitif"
+        ],
+        [
+            "id" => 5,
+            "name" => "Kulit Aging"
+        ],
+        [
+            "id" => 6,
+            "name" => "Kulit Hitam"
+        ],
+        [
+            "id" => 7,
+            "name" => "Kulit Gelap"
+        ],
+    ];
+
     $products = [
         [
             "name" => "Cell-a",
@@ -21,7 +52,8 @@ Route::get('/essentials', function () {
             "discount" => 0,
             "date" => "2025-08-22",
             "image" => "product-1.jpg",
-            "category" => "Cleanser"
+            "category" => "Cleanser",
+            "list_skin_concern_id" => [1,2,3,4,5]
         ],
         [
             "name" => "Cell-a",
@@ -31,6 +63,7 @@ Route::get('/essentials', function () {
             "date" => "2025-05-22",
             "image" => "product-1.jpg",
             "category" => "mask",
+            "list_skin_concern_id" => [1,2]
         ],
         [
             "name" => "Cell-a",
@@ -40,6 +73,7 @@ Route::get('/essentials', function () {
             "date" => "2025-05-22",
             "image" => "product-1.jpg",
             "category" => "moisturizer",
+            "list_skin_concern_id" => [2,4]
         ],
         [
             "name" => "Cell-a",
@@ -49,6 +83,7 @@ Route::get('/essentials', function () {
             "date" => "2025-07-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [1,4]
         ],
         [
             "name" => "Cell-a",
@@ -58,6 +93,7 @@ Route::get('/essentials', function () {
             "date" => "2025-01-22",
             "image" => "product-1.jpg",
             "category" => "Treatment",
+            "list_skin_concern_id" => [3,4]
         ],
         [
             "name" => "Cell-a",
@@ -67,6 +103,7 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [1,2]
         ],
         [
             "name" => "Cell-a",
@@ -76,6 +113,7 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [1,2]
         ],
         [
             "name" => "Cell-a",
@@ -85,6 +123,7 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [1,4]
         ],
         [
             "name" => "Cell-a",
@@ -94,6 +133,7 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [1,3]
         ],
         [
             "name" => "Cell-a",
@@ -103,6 +143,7 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [1,4]
         ],
         [
             "name" => "Cell-a",
@@ -112,6 +153,7 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [2,3]
         ],
         [
             "name" => "Cell-a",
@@ -121,6 +163,7 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [1,4]
         ],
         [
             "name" => "Cell-a",
@@ -130,6 +173,7 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [1,2]
         ],
         [
             "name" => "Cell-a",
@@ -139,8 +183,23 @@ Route::get('/essentials', function () {
             "date" => "2025-04-22",
             "image" => "product-1.jpg",
             "category" => "serum",
+            "list_skin_concern_id" => [2,3]
         ],
     ];
+
+    $products = array_map(function ($product) use ($skin_concerns) {
+        $matched_concerns = array_filter($skin_concerns, function ($concern) use ($product) {
+            return in_array($concern['id'], $product['list_skin_concern_id']);
+        });
+
+        $product['skin_concerns'] = array_values($matched_concerns);
+
+        return $product;
+    }, $products);
+
+
+    // apply skin_concern to product
+
 
     // get categories
     $categories = collect($products)->pluck('category')->unique()->values()->all();
