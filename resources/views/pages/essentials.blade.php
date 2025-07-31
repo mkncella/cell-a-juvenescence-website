@@ -93,7 +93,7 @@
             <div class="card-list flex flex-wrap items-center justify-center w-full gap-4">
                 <template x-for="(product, index) in filteredProducts" x-bind:key="product.id + '' + index">
 
-                    <div class="group flex-1 basis-52 max-w-[16rem] rounded-lg p-4 border  relative box-border h-60" x-data="() => ({
+                    <div class="group flex-1 basis-52 max-w-[16rem] rounded-lg p-4 border  relative box-border h-64" x-data="() => ({
                         isLiked: false,
                         isNewProduct: lessThan30day(product.date),
                         toggle() {
@@ -102,8 +102,8 @@
                         init() {
                         }
                     })">
-                        <div class="head">
-                            <img x-bind:src="imageProductPath + product.image" x-bind:alt="product.name" class="object-cover w-full h-24">
+                        <div class="head flex justify-center">
+                            <img x-bind:src="imageProductPath + product.image" x-bind:alt="product.name" class="object-cover object-center h-24">
     
                             <div class="absolute top-0 left-0 right-0 flex justify-between gap-4">
                                 <div class="text-white absolute text-xs">

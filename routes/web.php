@@ -54,7 +54,7 @@ Route::get('/essentials', function (Request $request) {
             "date" => "2025-08-22",
             "image" => "product-1.jpg",
             "category" => "Cleanser",
-            "list_skin_concern_id" => [1,2,3,4]
+            "list_skin_concern_id" => [1,2,3,4,5]
         ],
         [
             "name" => "Cell-a",
@@ -64,7 +64,7 @@ Route::get('/essentials', function (Request $request) {
             "date" => "2025-07-22",
             "image" => "product-1.jpg",
             "category" => "mask",
-            "list_skin_concern_id" => [1,2]
+            "list_skin_concern_id" => [1,2,3,4]
         ],
         [
             "name" => "Cell-a",
@@ -311,6 +311,19 @@ Route::get('/privacy-policy', function () {
 
 Route::get('/reseller-cell-a', function () {
     return view('pages.reseller');
+});
+
+Route::get('/reseller-fix', function () {
+
+    $stores = [
+        [
+            "title" => "Kosmetik ku",
+            "description" => "Toko termurah terasli",
+            "address" => ""
+        ]
+    ];
+
+    return view('pages.reseller-fix');
 });
 
 Route::get('/reseller-cell-a', [ResellerController::class, 'index'])->name('reseller');

@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     {{-- @vite(['resources/js/app.js']) --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+    @stack("script")
     
     @vite(['resources/css/app.css','resources/js/app.js'])
 
@@ -22,6 +23,7 @@
     {{-- <link rel="stylesheet" href="{{ asset("css/{$routeName}.css") }}"> --}}
 
 
+    @stack("link")
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -68,6 +70,7 @@
         console.log("boot", bootstrap)
         window.bootstrap = bootstrap
     </script>
+    @stack("bottom-script")
     {{-- Navbar --}}
     @include('components.navbar')
 
