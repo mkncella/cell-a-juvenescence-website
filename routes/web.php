@@ -61,7 +61,7 @@ Route::get('/essentials', function (Request $request) {
             "description" => "Blemish Balm BB Cream",
             "price" => 100000,
             "discount" => 20,
-            "date" => "2025-05-22",
+            "date" => "2025-07-22",
             "image" => "product-1.jpg",
             "category" => "mask",
             "list_skin_concern_id" => [1,2]

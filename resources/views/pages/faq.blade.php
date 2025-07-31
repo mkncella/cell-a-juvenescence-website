@@ -51,7 +51,7 @@
     
                         <template x-for="(qna, index) in faq.qna" :key="index">
                             <div class="border-b pb-2 w-full">
-                                <button @click="openIndexes.includes(index) ? openIndexes = openIndexes.filter((_index) => index != _index) : openIndexes.push(index)"
+                                <button @@click="openIndexes.includes(index) ? openIndexes = openIndexes.filter((_index) => index != _index) : openIndexes.push(index)"
                                     class="w-full text-left flex justify-between items-center py-2">
                                     <span x-text="qna.question" class="text-gray-800 font-medium"></span>
                                     <svg :class="openIndexes === index ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
