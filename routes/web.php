@@ -4,6 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResellerController;
 use Illuminate\Http\Request;
 
+function resolveShortLink($shortUrl)
+{
+    $ch = curl_init($shortUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // ini yang penting
+    curl_exec($ch);
+    $finalUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+    curl_close($ch);
+    return $finalUrl;
+}
+
 Route::get('/', function () {
     return view('pages.home');
 });
@@ -315,15 +326,144 @@ Route::get('/reseller-cell-a', function () {
 
 Route::get('/reseller-fix', function () {
 
+    $reqions = [
+        'DKI Jakarta' => [
+            'Jakarta Pusat',
+            'Jakarta Utara',
+            'Jakarta Selatan',
+        ],
+        'Jawa Barat' => [
+            'Kota Bandung',
+            'Kota Bogor',
+            'Kabupaten Bekasi',
+        ],
+        'Bali' => [
+            'Kota Denpasar',
+            'Kabupaten Badung',
+            'Kabupaten Gianyar',
+        ],
+        'Jawa Tengah' => [
+            'Kota Semarang',
+            'Kota Surakarta',
+            'Kabupaten Magelang',
+        ],
+        'Sumatera Utara' => [
+            'Kota Medan',
+            'Kota Pematangsiantar',
+            'Kabupaten Deli Serdang',
+        ],
+    ];
+
+
     $stores = [
         [
-            "title" => "Kosmetik ku",
+            "title" => "Cantika kosmetik",
             "description" => "Toko termurah terasli",
-            "address" => ""
-        ]
+            "address" => "Pasar Rumput, BL00DCT157, Jl. Sultan Agung, RT.1/RW.3, Ps. Manggis, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12970",
+            "link" => "https://maps.app.goo.gl/NnARdbv6kTSVz6BNA",
+            "lat" => "-6.2075605",
+            "lng" => "106.6968829",
+            "zoom" => "12",
+            "province" => "DKI Jakarta",
+            "city" => "Jakarta Utara",
+        ],
+        [
+            "title" => "TOKO DELIMA KOSMETIK",
+            "description" => "Toko Termurah dijamin murah",
+            "address" => "Gg. Lurah Jl. Petamburan No.04B 6, RT.6/RW.1, Petamburan, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10260",
+            "link" => "https://maps.app.goo.gl/PxAy55fiTV9T12ws6",
+            "lat" => "-6.1912006",
+            "lng" => "106.6650367",
+            "zoom" => "12",
+            "province" => "DKI Jakarta",
+            "city" => "Jakarta Pusat",
+        ],
+        [
+            "title" => "Elsa Cosmetics",
+            "description" => "Toko Termurah dijamin murah Di Bandung",
+            "address" => "Jl. Jamika No.27, Jamika, Kec. Bojongloa Kaler, Kota Bandung, Jawa Barat 40231",
+            "link" => "https://maps.app.goo.gl/1TVjtScNbE9Sqh317",
+            "lat" => "-6.9202921",
+            "lng" => "107.5143635",
+            "zoom" => "13",
+            "province" => "Jawa Barat",
+            "city" => "Kota Bandung",
+        ],
+        [
+            "title" => "Yamela Kosmetik",
+            "description" => "Toko Termurah terkeren murah Di Bekasi",
+            "address" => "Jl. Pahlawan No.20, RT.001/RW.007, Duren Jaya, Kec. Bekasi Tim., Kota Bks, Jawa Barat 17111",
+            "link" => "https://maps.app.goo.gl/wvSabvggPk9w6sBh8",
+            "lat" => "-6.2692317",
+            "lng" => "106.8903495",
+            "zoom" => "12",
+            "province" => "Jawa Barat",
+            "city" => "Kota Bekasi",
+        ],
+        [
+            "title" => "Olla Kosmetik",
+            "description" => "Toko Termurah terkeren murah se Medan",
+            "address" => "Helvetia Tengah, Kec. Medan Helvetia, Kota Medan, Sumatera Utara 20124",
+            "link" => "https://maps.app.goo.gl/m9F3AmhEwJe4KZiK68",
+            "lat" => "3.6139058",
+            "lng" => "98.5683502",
+            "zoom" => "13",
+            "province" => "Sumatera Utara",
+            "city" => "Kota Medan",
+        ],
+        [
+            "title" => "PADUSHE KOSMETIK",
+            "description" => "Toko Termurah terkeren murah se deliserang",
+            "address" => "Jl. Pertahanan No.17, Patumbak Kp., Kec. Patumbak, Kabupaten Deli Serdang, Sumatera Utara",
+            "link" => "https://maps.app.goo.gl/JEpF4U3AsC96HoDv9",
+            "lat" => "3.513004",
+            "lng" => "98.6942425",
+            "zoom" => "14.33",
+            "province" => "Sumatera Utara",
+            "city" => "Kabupaten Deli Serdang",
+        ],
     ];
 
     return view('pages.reseller-fix');
+});
+
+// Route::post("/get-latlng-by-goggle-map-link");
+
+Route::get("/get-latlng-by-goggle-map-link", function (Request $request) {
+
+    $link = $request->get("link");
+
+    $resolved = resolveShortLink($link);
+    // $regexs = [
+    //     '/@(-?\d+\.\d+),(-?\d+\.\d+),(\d+)z/',
+    //     '/@(-?\d+\.\d+),(-?\d+\.\d+),([\d\.]+)z/'
+    // ];
+
+    preg_match('/@(-?\d+\.\d+),(-?\d+\.\d+),([\d\.]+)z/', $resolved, $matches);
+
+    $lat = null;
+    $lng = null;
+    $zoom = null;
+
+    if ($matches) {
+        $lat = $matches[1];
+        $lng = $matches[2];
+        $zoom = $matches[3];
+    }
+
+    $result = [
+        "link" => $link,
+        "resolvedShortUrl" => $resolved,
+        "lat" => $lat,
+        "lng" => $lng,
+        "zoom" => $zoom,
+        "matches" => $matches,
+    ];
+
+    return $result;
+
+    // return view("pages.get-latlng-by-goggle-map-link", ["resolved" => $resolved, "lat" => $lat, "lng" => $lng, "zoom" => $zoom, "matches" => $matches, "link" => $link]);
+
 });
 
 Route::get('/reseller-cell-a', [ResellerController::class, 'index'])->name('reseller');
