@@ -357,6 +357,7 @@ Route::get('/reseller-fix', function () {
 
     $stores = [
         [
+            "id" => 1,
             "title" => "Cantika kosmetik",
             "description" => "Toko termurah terasli",
             "address" => "Pasar Rumput, BL00DCT157, Jl. Sultan Agung, RT.1/RW.3, Ps. Manggis, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12970",
@@ -368,6 +369,7 @@ Route::get('/reseller-fix', function () {
             "city" => "Jakarta Utara",
         ],
         [
+            "id" => 2,
             "title" => "TOKO DELIMA KOSMETIK",
             "description" => "Toko Termurah dijamin murah",
             "address" => "Gg. Lurah Jl. Petamburan No.04B 6, RT.6/RW.1, Petamburan, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10260",
@@ -379,6 +381,7 @@ Route::get('/reseller-fix', function () {
             "city" => "Jakarta Pusat",
         ],
         [
+            "id" => 3,
             "title" => "Elsa Cosmetics",
             "description" => "Toko Termurah dijamin murah Di Bandung",
             "address" => "Jl. Jamika No.27, Jamika, Kec. Bojongloa Kaler, Kota Bandung, Jawa Barat 40231",
@@ -390,6 +393,7 @@ Route::get('/reseller-fix', function () {
             "city" => "Kota Bandung",
         ],
         [
+            "id" => 4,
             "title" => "Yamela Kosmetik",
             "description" => "Toko Termurah terkeren murah Di Bekasi",
             "address" => "Jl. Pahlawan No.20, RT.001/RW.007, Duren Jaya, Kec. Bekasi Tim., Kota Bks, Jawa Barat 17111",
@@ -401,6 +405,7 @@ Route::get('/reseller-fix', function () {
             "city" => "Kota Bekasi",
         ],
         [
+            "id" => 5,
             "title" => "Olla Kosmetik",
             "description" => "Toko Termurah terkeren murah se Medan",
             "address" => "Helvetia Tengah, Kec. Medan Helvetia, Kota Medan, Sumatera Utara 20124",
@@ -412,6 +417,7 @@ Route::get('/reseller-fix', function () {
             "city" => "Kota Medan",
         ],
         [
+            "id" => 6,
             "title" => "PADUSHE KOSMETIK",
             "description" => "Toko Termurah terkeren murah se deliserang",
             "address" => "Jl. Pertahanan No.17, Patumbak Kp., Kec. Patumbak, Kabupaten Deli Serdang, Sumatera Utara",
@@ -424,7 +430,9 @@ Route::get('/reseller-fix', function () {
         ],
     ];
 
-    return view('pages.reseller-fix');
+    return view('pages.reseller-fix', [
+        "stores" => $stores
+    ]);
 });
 
 // Route::post("/get-latlng-by-goggle-map-link");

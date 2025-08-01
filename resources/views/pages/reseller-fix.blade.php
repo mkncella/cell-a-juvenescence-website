@@ -13,7 +13,7 @@
         </div>
 
 
-        <div class="tab-content">
+        <div class="tab-content" x-data="{ 'id': 123 }">
             <section class="tab-pane active" id="join">
                 <section class="reseller-hero">
                     <img src="/images/joinus_reseller.jpg" alt="Hero Reseller" class="hero-img" />
@@ -206,8 +206,12 @@
 
             </section>
 
-            <section class="tab-pane" id="official">
-                <div id="map" class="h-screen w-full"></div>
+            <section x-ref="officialReseller" class="tab-pane pt-24" id="official">
+                <div class="px-[max(3%,1rem)]">
+                    <div x-ref="map" id="map" class="h-88 w-full !scroll-mt-24"></div>
+                </div>
+
+
                 <!-- 1. PETA -->
                 {{-- <section id="map-section">
                     <img src="/images/map-indonesia.svg" class="map-indonesia" alt="Peta Indonesia" class="map-image" />
@@ -315,6 +319,51 @@
 
 
                 <!-- 3. DAFTAR TOKO -->
+                <div class="store-grid" id="storeContainer" x-data="() => ({
+                    stores: @js($stores),
+                    focusMarker(id) {
+                        {{-- const { markers } = window --}}
+                        window.isRequestFocusMarker = true
+
+                        console.log('clicked title')
+                        
+                        const marker = window.markers[id]
+                        
+                        if (!marker) return console.log(id, window.markers)
+                        console.log('clicked title...')
+
+                        
+                        {{-- document.body.scrollIntoView({ behavior: 'smooth' }) --}}
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+
+                        setTimeout(() => {
+
+                            
+                            
+                            window.map.flyTo(marker.getLatLng(), 15, {
+                                animated: true,
+                                duration: 1.2
+                            })
+                            marker.openPopup()
+                        }, 1000)
+
+                    },
+                })">
+                    <template x-for="(store, index) in stores" x-bind:key="store.id + '' + index">
+                        <div class="store-card" x-show="window.selectedStoreId ? window.selectedStoreId == store.id : true">
+                            <h3 @@click="focusMarker(store.id)" class="cursor-pointer"><i class="bi bi-shop"></i> <span x-text="store.title"></span></h3>
+                            <p><i class="bi bi-geo-alt"></i> <span x-text="store.address"></span></p>
+                            {{-- <p><i class="bi bi-telephone"></i>
+                                <a href="tel:{{ $reseller->no_hp }}">{{ $reseller->no_hp }}</a>
+                            </p> --}}
+                            {{-- @if ($reseller->shopee)
+                                <p><i class="bi bi-bag"></i> {{ $reseller->shopee }}</p>
+                            @endif --}}
+                            {{-- @if ($reseller->tiktok)
+                                <p><i class="bi bi-shop-window"></i> {{ $reseller->tiktok }}</p>
+                            @endif --}}
+                        </div>
+                    </template>
                 {{-- <div class="store-grid" id="storeContainer">
                     @foreach ($resellers as $reseller)
                         <div class="store-card">
@@ -348,11 +397,16 @@
 
     @push("bottom-script")
         <script defer>
+
+            window.markers = {}
             
             setTimeout(() => {
                 console.log(window.L)
+
                 // Inisialisasi peta di tengah Indonesia
                 var map = L?.map('map').setView([-2.4289, 108.0149], 5);
+
+                window.map = map
     
                 // Tambahkan tile layer dari OpenStreetMap
                 L?.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -363,9 +417,55 @@
                     console.log("YOUR CLICKED:", e)
                 })
 
-                const latlng = [
-                    [-6.245374173091761, 106.99056241157128]
-                ]
+                // const latlng = [
+                //     [-6.245374173091761, 106.99056241157128]
+                // ]
+
+                const stores = @js($stores);
+
+                console.log({ stores })
+
+                const { markers } = window
+
+                stores.forEach((store, i) => {
+
+                    const { id, lat, lng, zoom, title, description, address } = store
+
+                    const marker = L.marker([lat, lng], {
+                        title, riseOnHover: true, draggable: false,
+                    }).bindPopup(`
+                        <h5 class="font-bold text-blue-200">${ title }</h5>
+                        <p>${ description }</p>
+                        <p>${ address }</p>
+                    `).addTo(map);
+
+                    marker.on("popupopen", e => {
+                        if (window.isRequestFocusMarker) return window.isRequestFocusMarker = false
+
+                        console.log("OPEN MANUAL", e)
+                        window.selectedStoreId = id
+                    })
+
+                    marker.on("popupclose", () => {
+                        // delete selectedStoreId
+                        window.selectedStoreId = 0
+                    })
+
+                    markers[id] = marker
+
+                    // marker.bindPopup("abvcd")
+                    
+                    // marker
+                    // console.log({ marker })
+                    // if (i % 2) {
+                        
+                    // } else {
+
+                    //     const popup = L.popup([lat, lng], {
+                    //         content: title
+                    //     }).addTo(map)
+                    // }
+                })
     
                 // Muat data toko dari API dan tambahkan pin
                 // fetch('/api/stores')
