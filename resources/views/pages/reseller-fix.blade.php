@@ -13,7 +13,122 @@
         </div>
 
 
-        <div class="tab-content" x-data="{ 'id': 123 }">
+        <div class="tab-content" x-data="() => ({
+            stores: @js($stores),
+            markers: {},
+            isRequestFocusMarker: false,
+            selectedStoreId: 0,
+            map: null,
+
+            regions: {},
+            provinces: [],
+            cities: [],
+
+            get filteredStore() {
+                const _stores = this.stores
+
+                {{-- filter province --}}
+                {{-- if (regions.some((province) => province.isSelected)) {
+                    _stores = _stores.filter(({ province}) => )
+                } --}}
+            },
+
+            init() {
+
+                {{-- set regions(area) & provincies & cities --}}
+                this.stores.forEach(({ province, city }) => {
+
+                    if (!this.regions[province]) {
+                        this.regions[province] = {
+                            isSelected: false,
+                            cities: [],
+                            filterCities: {}
+                        }
+                    }
+
+                    if (!this.regions[province].cities.includes(city)) {
+                        this.regions[province].cities.push(city)
+                        this.regions[province].filterCities[city] = false
+                    }
+                })
+
+                this.provinces = [...new Set(Object.keys(this.regions))]
+                this.cities = [...new Set(this.provinces.map((province) => this.regions[province].cities).flat())]
+                
+                {{-- init | create map --}}
+                setTimeout(() => {
+
+                    let { stores, markers, isRequestFocusMarker, map } = this
+
+                    this.map = L.map('map').setView([-2.4289, 108.0149], 5);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href=\'https://www.openstreetmap.org/copyright\'>OpenStreetMap</a> contributors'
+                    }).addTo(this.map);
+
+                    stores.forEach((store, i) => {
+
+                        const { id, lat, lng, zoom, title, description, address } = store
+
+                        const marker = L.marker([lat, lng], {
+                            title, riseOnHover: true, draggable: false,
+                        }).bindPopup(`
+                            <h5 class='font-bold text-blue-200'>${ title }</h5>
+                            <p>${ description }</p>
+                            <p>${ address }</p>
+                        `).addTo(this.map);
+
+                        marker.on('popupopen', e => {
+                            if (this.isRequestFocusMarker) return this.isRequestFocusMarker = false
+
+                            this.selectedStoreId = id
+                        })
+
+                        marker.on('popupclose', () => {
+                            // delete selectedStoreId
+                            this.selectedStoreId = 0
+                        })
+                        markers[id] = marker
+                    })
+
+
+                    const { bootstrap } = window
+    
+                    {{-- document.querySelectorAll('.dropdown-toggle').forEach((el) => {
+                        new bootstrap.Dropdown(el);
+                        console.log('jalo', { bootstrap })
+                    }); --}}
+                }, 500)
+
+
+            },
+            focusMarker(id) {
+                this.isRequestFocusMarker = true
+
+                console.log('clicked title')
+                
+                const marker = this.markers[id]
+                
+                if (!marker) return console.log(id, this.markers)
+                console.log('clicked title...')
+
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+
+                setTimeout(() => {
+
+                    let { lat, lng } = marker.getLatLng()
+
+                    lat += 0.004
+                    
+                    this.map.flyTo({ lat, lng }, 15, {
+                        animated: true,
+                        duration: 1.2
+                    })
+                    marker.openPopup()
+                }, 1000)
+
+            },
+        })">
             <section class="tab-pane active" id="join">
                 <section class="reseller-hero">
                     <img src="/images/joinus_reseller.jpg" alt="Hero Reseller" class="hero-img" />
@@ -297,6 +412,36 @@
                 </section> --}}
 
                 <!-- 2. DROPDOWN -->
+                <div x-data="{
+                    isOpen: false,
+                    selected: null
+                }" class="relative w-64 pl-6 pt-8">
+                <!-- Button Trigger -->
+                <button @@click="isOpen = !isOpen"
+                    class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center">
+                    <span x-text="selected ?? 'Pilih Provinsi'"></span>
+                    <svg class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': isOpen }" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <ul x-show="isOpen" @click.outside="isOpen = false" x-transition
+                    class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md max-h-60 overflow-y-auto">
+                    <template x-for="province in provinces" :key="province">
+                        <li>
+                            <button @@click="regions[province].isSelected = true; isOpen = false"
+                                    class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                                    x-text="province"></button>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+
                 {{-- <div class="dropdown premium-dropdown">
                     <button class="btn btn-premium dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -319,40 +464,14 @@
 
 
                 <!-- 3. DAFTAR TOKO -->
-                <div class="store-grid" id="storeContainer" x-data="() => ({
-                    stores: @js($stores),
-                    focusMarker(id) {
-                        {{-- const { markers } = window --}}
-                        window.isRequestFocusMarker = true
-
-                        console.log('clicked title')
-                        
-                        const marker = window.markers[id]
-                        
-                        if (!marker) return console.log(id, window.markers)
-                        console.log('clicked title...')
-
-                        
-                        {{-- document.body.scrollIntoView({ behavior: 'smooth' }) --}}
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
-
-                        setTimeout(() => {
-
-                            
-                            
-                            window.map.flyTo(marker.getLatLng(), 15, {
-                                animated: true,
-                                duration: 1.2
-                            })
-                            marker.openPopup()
-                        }, 1000)
-
-                    },
-                })">
+                <div class="store-grid" id="storeContainer">
                     <template x-for="(store, index) in stores" x-bind:key="store.id + '' + index">
-                        <div class="store-card" x-show="window.selectedStoreId ? window.selectedStoreId == store.id : true">
+                        <div class="store-card" x-show="selectedStoreId ? selectedStoreId == store.id : true">
                             <h3 @@click="focusMarker(store.id)" class="cursor-pointer"><i class="bi bi-shop"></i> <span x-text="store.title"></span></h3>
                             <p><i class="bi bi-geo-alt"></i> <span x-text="store.address"></span></p>
+                            <p><i class="bi bi-pin-map"></i>
+                                <a x-bind:href="store.link" x-text="store.link" target="_blank"></a>
+                            </p>
                             {{-- <p><i class="bi bi-telephone"></i>
                                 <a href="tel:{{ $reseller->no_hp }}">{{ $reseller->no_hp }}</a>
                             </p> --}}
@@ -364,25 +483,7 @@
                             @endif --}}
                         </div>
                     </template>
-                {{-- <div class="store-grid" id="storeContainer">
-                    @foreach ($resellers as $reseller)
-                        <div class="store-card">
-                            <h3><i class="bi bi-shop"></i> {{ $reseller->nama_toko }}</h3>
-                            <p><i class="bi bi-geo-alt"></i> {{ $reseller->alamat }}</p>
-                            <p><i class="bi bi-telephone"></i>
-                                <a href="tel:{{ $reseller->no_hp }}">{{ $reseller->no_hp }}</a>
-                            </p>
-                            @if ($reseller->shopee)
-                                <p><i class="bi bi-bag"></i> {{ $reseller->shopee }}</p>
-                            @endif
-                            @if ($reseller->tiktok)
-                                <p><i class="bi bi-shop-window"></i> {{ $reseller->tiktok }}</p>
-                            @endif
-                        </div>
-                    @endforeach
-                </div> --}}
-
-
+                </div>
             </section>
         </div>
 
@@ -398,85 +499,85 @@
     @push("bottom-script")
         <script defer>
 
-            window.markers = {}
+            // window.markers = {}
             
-            setTimeout(() => {
-                console.log(window.L)
+            // setTimeout(() => {
+            //     console.log(window.L)
 
-                // Inisialisasi peta di tengah Indonesia
-                var map = L?.map('map').setView([-2.4289, 108.0149], 5);
+            //     // Inisialisasi peta di tengah Indonesia
+            //     var map = L?.map('map').setView([-2.4289, 108.0149], 5);
 
-                window.map = map
+            //     window.map = map
     
-                // Tambahkan tile layer dari OpenStreetMap
-                L?.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
+            //     // Tambahkan tile layer dari OpenStreetMap
+            //     L?.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            //     }).addTo(map);
 
-                map.on("click", e => {
-                    console.log("YOUR CLICKED:", e)
-                })
+            //     map.on("click", e => {
+            //         console.log("YOUR CLICKED:", e)
+            //     })
 
-                // const latlng = [
-                //     [-6.245374173091761, 106.99056241157128]
-                // ]
+            //     // const latlng = [
+            //     //     [-6.245374173091761, 106.99056241157128]
+            //     // ]
 
-                const stores = @js($stores);
+            //     const stores = @js($stores);
 
-                console.log({ stores })
+            //     console.log({ stores })
 
-                const { markers } = window
+            //     const { markers } = window
 
-                stores.forEach((store, i) => {
+                // stores.forEach((store, i) => {
 
-                    const { id, lat, lng, zoom, title, description, address } = store
+                //     const { id, lat, lng, zoom, title, description, address } = store
 
-                    const marker = L.marker([lat, lng], {
-                        title, riseOnHover: true, draggable: false,
-                    }).bindPopup(`
-                        <h5 class="font-bold text-blue-200">${ title }</h5>
-                        <p>${ description }</p>
-                        <p>${ address }</p>
-                    `).addTo(map);
+                //     const marker = L.marker([lat, lng], {
+                //         title, riseOnHover: true, draggable: false,
+                //     }).bindPopup(`
+                //         <h5 class="font-bold text-blue-200">${ title }</h5>
+                //         <p>${ description }</p>
+                //         <p>${ address }</p>
+                //     `).addTo(map);
 
-                    marker.on("popupopen", e => {
-                        if (window.isRequestFocusMarker) return window.isRequestFocusMarker = false
+                //     marker.on("popupopen", e => {
+                //         if (window.isRequestFocusMarker) return window.isRequestFocusMarker = false
 
-                        console.log("OPEN MANUAL", e)
-                        window.selectedStoreId = id
-                    })
+                //         console.log("OPEN MANUAL", e)
+                //         window.selectedStoreId = id
+                //     })
 
-                    marker.on("popupclose", () => {
-                        // delete selectedStoreId
-                        window.selectedStoreId = 0
-                    })
+                //     marker.on("popupclose", () => {
+                //         // delete selectedStoreId
+                //         window.selectedStoreId = 0
+                //     })
 
-                    markers[id] = marker
+                //     markers[id] = marker
 
-                    // marker.bindPopup("abvcd")
+            //         // marker.bindPopup("abvcd")
                     
-                    // marker
-                    // console.log({ marker })
-                    // if (i % 2) {
+            //         // marker
+            //         // console.log({ marker })
+            //         // if (i % 2) {
                         
-                    // } else {
+            //         // } else {
 
-                    //     const popup = L.popup([lat, lng], {
-                    //         content: title
-                    //     }).addTo(map)
-                    // }
-                })
+            //         //     const popup = L.popup([lat, lng], {
+            //         //         content: title
+            //         //     }).addTo(map)
+            //         // }
+            //     })
     
-                // Muat data toko dari API dan tambahkan pin
-                // fetch('/api/stores')
-                //     .then(response => response.json())
-                //     .then(data => {
-                //         data.forEach(store => {
-                //             var marker = L.marker([store.latitude, store.longitude]).addTo(map);
-                //             marker.bindPopup(`<b>${store.name}</b><br>${store.address}`);
-                //         });
-                //     });
-            }, 1000);
+            //     // Muat data toko dari API dan tambahkan pin
+            //     // fetch('/api/stores')
+            //     //     .then(response => response.json())
+            //     //     .then(data => {
+            //     //         data.forEach(store => {
+            //     //             var marker = L.marker([store.latitude, store.longitude]).addTo(map);
+            //     //             marker.bindPopup(`<b>${store.name}</b><br>${store.address}`);
+            //     //         });
+            //     //     });
+            // }, 1000);
         </script>
     @endpush
 
