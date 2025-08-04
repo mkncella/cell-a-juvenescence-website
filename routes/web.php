@@ -326,33 +326,33 @@ Route::get('/reseller-cell-a', function () {
 
 Route::get('/reseller-fix', function () {
 
-    $reqions = [
-        'DKI Jakarta' => [
-            'Jakarta Pusat',
-            'Jakarta Utara',
-            'Jakarta Selatan',
-        ],
-        'Jawa Barat' => [
-            'Kota Bandung',
-            'Kota Bogor',
-            'Kabupaten Bekasi',
-        ],
-        'Bali' => [
-            'Kota Denpasar',
-            'Kabupaten Badung',
-            'Kabupaten Gianyar',
-        ],
-        'Jawa Tengah' => [
-            'Kota Semarang',
-            'Kota Surakarta',
-            'Kabupaten Magelang',
-        ],
-        'Sumatera Utara' => [
-            'Kota Medan',
-            'Kota Pematangsiantar',
-            'Kabupaten Deli Serdang',
-        ],
-    ];
+    // $regions = [
+    //     'DKI Jakarta' => [
+    //         'Jakarta Pusat',
+    //         'Jakarta Utara',
+    //         'Jakarta Selatan',
+    //     ],
+    //     'Jawa Barat' => [
+    //         'Kota Bandung',
+    //         'Kota Bogor',
+    //         'Kabupaten Bekasi',
+    //     ],
+    //     'Bali' => [
+    //         'Kota Denpasar',
+    //         'Kabupaten Badung',
+    //         'Kabupaten Gianyar',
+    //     ],
+    //     'Jawa Tengah' => [
+    //         'Kota Semarang',
+    //         'Kota Surakarta',
+    //         'Kabupaten Magelang',
+    //     ],
+    //     'Sumatera Utara' => [
+    //         'Kota Medan',
+    //         'Kota Pematangsiantar',
+    //         'Kabupaten Deli Serdang',
+    //     ],
+    // ];
 
 
     $stores = [
@@ -361,13 +361,13 @@ Route::get('/reseller-fix', function () {
             "title" => "Cantika kosmetik",
             "description" => "Toko termurah terasli",
             "address" => "Pasar Rumput, BL00DCT157, Jl. Sultan Agung, RT.1/RW.3, Ps. Manggis, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12970",
-            // "link" => "https://maps.app.goo.gl/NnARdbv6kTSVz6BNA",
-            "link" => "https://maps.app.goo.gl/Ggo6kghKVwtCnMA26",
+            "link" => "https://maps.app.goo.gl/NnARdbv6kTSVz6BNA",
+            // "link" => "https://maps.app.goo.gl/Ggo6kghKVwtCnMA26",
             "lat" => "-6.2075605",
             "lng" => "106.6968829",
             "zoom" => "12",
             "province" => "DKI Jakarta",
-            "city" => "Jakarta Utara",
+            "city" => "Jakarta Selatan",
         ],
         [
             "id" => 2,

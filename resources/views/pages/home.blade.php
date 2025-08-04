@@ -406,9 +406,9 @@
 
    
 
-    <script type="module" defer>
+    <script defer>
 
-        const { bootstrap } = window
+        // const { bootstrap } = window
   
         // Inisialisasi carousel jika belum otomatis
         const myCarouselElement = document.querySelector('#mainCarousel');

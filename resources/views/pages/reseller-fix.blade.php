@@ -23,14 +23,32 @@
             regions: {},
             provinces: [],
             cities: [],
+            selectedProvince: null,
+            selectedCity: null,
+
+            get filteredCities() {
+                const { selectedProvince, cities, regions, provinces } = this
+
+                {{-- return cities --}}
+                return !selectedProvince ? cities : regions[selectedProvince].cities
+            },
 
             get filteredStore() {
-                const _stores = this.stores
+                let _stores = this.stores
+
+                const { selectedProvince, selectedCity } = this
 
                 {{-- filter province --}}
-                {{-- if (regions.some((province) => province.isSelected)) {
-                    _stores = _stores.filter(({ province}) => )
-                } --}}
+                if (selectedProvince) {
+                    _stores = _stores.filter(({ province }) => province == selectedProvince)
+                }
+
+                {{-- filter city --}}
+                if (selectedCity) {
+                    _stores = _stores.filter(({ city }) => city == selectedCity)
+                }
+
+                return _stores
             },
 
             init() {
@@ -60,7 +78,15 @@
 
                     let { stores, markers, isRequestFocusMarker, map } = this
 
-                    this.map = L.map('map').setView([-2.4289, 108.0149], 5);
+                    this.map = L.map('map', {
+                        center: [-2.4289, 108.0149],
+                        zoom: 5,
+                        {{-- maxBounds: [
+                            [-11, 94],
+                            [7, 142]
+                        ],
+                        maxBoundsViscosity: 1.0  --}}
+                    })//.setView([-2.4289, 108.0149], 5);
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href=\'https://www.openstreetmap.org/copyright\'>OpenStreetMap</a> contributors'
@@ -68,7 +94,7 @@
 
                     stores.forEach((store, i) => {
 
-                        const { id, lat, lng, zoom, title, description, address } = store
+                        const { id, lat, lng, zoom, title, description, address, province, city } = store
 
                         const marker = L.marker([lat, lng], {
                             title, riseOnHover: true, draggable: false,
@@ -78,8 +104,47 @@
                             <p>${ address }</p>
                         `).addTo(this.map);
 
-                        marker.on('popupopen', e => {
+                        marker.on('popupopen', async e => {
                             if (this.isRequestFocusMarker) return this.isRequestFocusMarker = false
+
+                            
+                            {{-- in case where the filter province is selected for other province. samething for the city --}}
+                            let { selectedProvince, selectedCity } = this
+
+                            {{-- both of them --}}
+                            if (selectedProvince && selectedProvince != province && selectedCity && selectedCity != city) {
+
+                                console.log('Province and city are not selected!')
+                                
+                                const { isConfirmed } = await Swal.fire({ icon: 'info', title: 'Notifikasi', html: `Provinsi dan Kota yang dipilih adalah <bold>${ selectedProvince } -> ${ selectedCity }</bold>. <br>klik 'Pilih ulang provinsi dan kota' untuk set ke ${ province } -> ${ city } guna menampilkan toko.`, showCancelButton: true, confirmButtonText: 'Pilih ulang provinsi dan kota', cancelButtonText: 'Batal' })
+                                
+                                if (!isConfirmed) return
+    
+                                this.selectedProvince = province
+                                this.selectedCity = city
+
+                            } else {
+                                if (selectedProvince && selectedProvince != province) {
+                                    console.log('Province are not selected!')
+                                    
+                                    const { isConfirmed } = await Swal.fire({ icon: 'info', title: 'Notifikasi', html: `Provinsi yang dipilih adalah <bold>${ selectedProvince }</bold>. <br>klik 'Pilih ulang provinsi' untuk set ke ${ province } guna menampilkan toko.`, showCancelButton: true, confirmButtonText: 'Pilih ulang provinsi', cancelButtonText: 'Batal' })
+                                    
+                                    if (!isConfirmed) return
+    
+                                    this.selectedProvince = province
+                                }
+                                
+                                if (selectedCity && selectedCity != city) {
+                                    console.log('City are not selected!')
+    
+                                    const { isConfirmed } = await Swal.fire({ icon: 'info', title: 'Notifikasi', html: `Kota yang dipilih adalah <bold>${ selectedCity }</bold>. <br>klik 'Pilih ulang kota' untuk set ke ${ city } guna menampilkan toko.`, showCancelButton: true, confirmButtonText: 'Pilih ulang kota', cancelButtonText: 'Batal' })
+    
+                                    if (!isConfirmed) return
+    
+                                    this.selectedCity = city
+                                }
+                            }
+                            
 
                             this.selectedStoreId = id
                         })
@@ -412,34 +477,73 @@
                 </section> --}}
 
                 <!-- 2. DROPDOWN -->
-                <div x-data="{
-                    isOpen: false,
-                    selected: null
-                }" class="relative w-64 pl-6 pt-8">
-                <!-- Button Trigger -->
-                <button @@click="isOpen = !isOpen"
-                    class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center">
-                    <span x-text="selected ?? 'Pilih Provinsi'"></span>
-                    <svg class="w-4 h-4 transform transition-transform duration-200"
-                        :class="{ 'rotate-180': isOpen }" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-
-                <!-- Dropdown Menu -->
-                <ul x-show="isOpen" @click.outside="isOpen = false" x-transition
-                    class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md max-h-60 overflow-y-auto">
-                    <template x-for="province in provinces" :key="province">
-                        <li>
-                            <button @@click="regions[province].isSelected = true; isOpen = false"
+                <div class="flex flex-wrap gap-4 md:gap-8">
+                    <div x-data="{
+                        isOpen: false,
+                    }" class="relative w-64 pl-6 pt-8">
+                        <!-- Button Trigger -->
+                        <button @@click="isOpen = !isOpen"
+                            class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center">
+                            <span x-text="selectedProvince ?? 'Pilih Provinsi'"></span>
+                            <svg class="w-4 h-4 transform transition-transform duration-200"
+                                :class="{ 'rotate-180': isOpen }" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+    
+                        <!-- Dropdown Menu -->
+                        <ul x-show="isOpen" @click.outside="isOpen = false" x-transition
+                            class="absolute z-10 mt-1 !pl-0 w-full bg-white border border-gray-300 rounded-md shadow-md max-h-60 overflow-y-auto">
+                            <li>
+                                <button @@click="(selectedProvince = null ,isOpen = false)"
                                     class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
-                                    x-text="province"></button>
-                        </li>
-                    </template>
-                </ul>
-            </div>
+                                >Pilih Semua</button>
+                            </li>
+                            <template x-for="province in provinces" x-bind:key="province">
+                                <li>
+                                    <button @@click="(selectedProvince = province, isOpen = false)"
+                                            class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                                            x-text="province"></button>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                    
+                    <div x-data="{
+                        isOpen: false,
+                    }" class="relative w-64 pl-6 pt-8">
+                        <!-- Button Trigger -->
+                        <button @@click="isOpen = !isOpen"
+                            class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center">
+                            <span x-text="selectedCity ?? 'Pilih Kota'"></span>
+                            <svg class="w-4 h-4 transform transition-transform duration-200"
+                                :class="{ 'rotate-180': isOpen }" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+    
+                        <!-- Dropdown Menu -->
+                        <ul x-show="isOpen" @click.outside="isOpen = false" x-transition
+                            class="absolute z-10 !pl-0 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-md max-h-60 overflow-y-auto">
+                            <li>
+                                <button @@click="(selectedCity = null ,isOpen = false)"
+                                    class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                                >Pilih Semua</button>
+                            </li>
+                            <template x-for="city in filteredCities" x-bind:key="city">
+                                <li>
+                                    <button @@click="(selectedCity = city, isOpen = false)"
+                                            class="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                                            x-text="city"></button>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
 
 
                 {{-- <div class="dropdown premium-dropdown">
@@ -465,7 +569,7 @@
 
                 <!-- 3. DAFTAR TOKO -->
                 <div class="store-grid" id="storeContainer">
-                    <template x-for="(store, index) in stores" x-bind:key="store.id + '' + index">
+                    <template x-for="(store, index) in filteredStore" x-bind:key="store.id + '' + index">
                         <div class="store-card" x-show="selectedStoreId ? selectedStoreId == store.id : true">
                             <h3 @@click="focusMarker(store.id)" class="cursor-pointer"><i class="bi bi-shop"></i> <span x-text="store.title"></span></h3>
                             <p><i class="bi bi-geo-alt"></i> <span x-text="store.address"></span></p>
