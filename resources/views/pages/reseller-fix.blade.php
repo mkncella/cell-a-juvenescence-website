@@ -175,13 +175,22 @@
 
                     let { lat, lng } = marker.getLatLng()
 
+                    console.log("once", this.map.once)
+                    console.log("dor")
                     lat += 0.004
                     
                     this.map.flyTo({ lat, lng }, 15, {
                         animated: true,
                         duration: 1.2
                     })
-                    marker.openPopup()
+
+                    
+
+                    this.map.once("moveend", () => {
+                        console.log("open popuoppppp")
+                        marker.openPopup()
+                    })
+
                 }, 1000)
 
             },

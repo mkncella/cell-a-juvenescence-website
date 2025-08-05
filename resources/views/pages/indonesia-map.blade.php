@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="reseller-tabs-section">
-        <div class="tab-wrapper">
+        <div class="tab-wrapper !-mt-12">
             <div class="program-tabs">
                 <button class="tab-button active" data-tab="join">Join Us</button>
                 <button class="tab-button" data-tab="official">Official Reseller</button>
@@ -97,16 +97,6 @@
                         }, 100) // delay 100ms agar tidak spam
                     })
 
-
-                    {{-- L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href=\'https://www.openstreetmap.org/copyright\'>OpenStreetMap</a> contributors'
-                    }).addTo(this.map); --}}
-                    {{-- L.tileLayer('', { attribution: '' }).addTo(map) --}}
-                    {{-- L.tileLayer('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAE0lEQVR42mP8/5+hHgAHggJ/MEVN9AAAAABJRU5ErkJggg==', {
-                        attribution: ''
-                    }).addTo(map); --}}
-
-
                     stores.forEach((store, i) => {
 
                         const { id, lat, lng, zoom, title, description, address, province, city } = store
@@ -171,63 +161,32 @@
                         markers[id] = marker
                     })
 
-
-                    const { bootstrap } = window
-    
-                    {{-- document.querySelectorAll('.dropdown-toggle').forEach((el) => {
-                        new bootstrap.Dropdown(el);
-                        console.log('jalo', { bootstrap })
-                    }); --}}
-
-
-
-
                     {{-- GEOJSON --}}
-                    // Load GeoJSON provinsi
                     const response = await fetch('/maps/indonesia-province-simple.json');
                     const data = await response.json();
 
-                    // Tambahkan ke map
                     const geoJsonLayer = L.geoJSON(data, {
                         style: {
-                            color: '#3B82F6',
+                            color: '#2563eb',         // Border: biru gelap
                             weight: 1,
-                            fillColor: '#93C5FD',
-                            fillOpacity: 0.5,
+                            fillColor: '#93c5fd',     // Default: biru muda
+                            fillOpacity: 0.4,
                         },
                         onEachFeature: (feature, layer) => {
                             const name = feature.properties?.Propinsi || 'Tidak diketahui';
 
                             layer.bindPopup(`<strong>${name}</strong>`);
-
-                            // Hover effect
-                            layer.on('mouseover', function () {
-                                this.setStyle({ fillColor: '#2563EB' });
-                            });
-                            layer.on('mouseout', function () {
-                                this.setStyle({ fillColor: '#93C5FD' });
-                            });
-
-                            // Biar popup muncul dari layer-nya (dan ikut saat peta digeser)
-                            layer.on('click', function () {
-                                this.openPopup();
-                            });
                         }
                     }).addTo(this.map);
 
-
-
-                    {{-- console.log('isarray', Array.isArray(markers))
-                    console.log('markers', markers) --}}
-                    // 1. Loop setiap feature (provinsi)
-                    // 1. Buat FeatureCollection dari semua marker
+                    // Buat FeatureCollection dari semua marker
                     const markerPoints = turf.featureCollection(
                         Object.values(markers).map(({ _latlng: { lat, lng } }) =>
                             turf.point([lng, lat])
                         )
                     );
 
-                    // 2. Loop setiap polygon (layer)
+                    // Loop setiap polygon
                     geoJsonLayer.eachLayer((layer) => {
                         const feature = layer.feature;
 
@@ -237,13 +196,10 @@
 
                         const polygon = turf.feature(feature.geometry);
                         const matched = turf.pointsWithinPolygon(markerPoints, polygon);
-
                         const hasMarkerInside = matched.features.length > 0;
 
                         const baseColor = hasMarkerInside ? '#3b82f6' : '#93c5fd'; // biru tua : biru muda
-
-                        // Simpan warna asal
-                        layer.options.originalColor = baseColor;
+                        layer.options.originalColor = baseColor; // Simpan warna dasar
 
                         layer.setStyle({
                             fillColor: baseColor,
@@ -252,21 +208,24 @@
                             weight: 1
                         });
 
-                        // Hover effect
+                        // Hover effect (hanya 1 kali disini!)
                         layer.on('mouseover', function () {
                             this.setStyle({
-                                fillColor: '#1d4ed8', // lebih gelap saat hover
+                                fillColor: '#1d4ed8', // biru lebih gelap saat hover
                             });
                         });
 
                         layer.on('mouseout', function () {
                             this.setStyle({
-                                fillColor: this.options.originalColor || baseColor, // kembalikan ke warna asal
+                                fillColor: this.options.originalColor, // kembalikan ke warna dasar
                             });
                         });
+
+                        // Supaya popup ikut layer saat digeser
+                        layer.on('click', function () {
+                            this.openPopup();
+                        });
                     });
-
-
 
                 }, 500)
 
@@ -289,16 +248,20 @@
                     let { lat, lng } = marker.getLatLng()
 
                     const zoom = this.map.getZoom()
-                    {{-- console.log({ zoom, lat }) --}}
                     lat += (Math.pow(2, (10 - zoom)) * 0.15)
-                    {{-- console.log({ zoom, lat }) --}}
                     
                     this.map.flyTo({ lat, lng }, zoom, {
                         animated: true,
                         duration: 1.2
                     })
-                    marker.openPopup()
-                }, 1000)
+
+                    this.map.once('moveend', () => {
+                        setTimeout(() => {
+                            marker.openPopup()
+                        }, 50)
+                    })
+
+                }, 500)
 
             },
         })">
@@ -494,101 +457,19 @@
 
             </section>
 
-            <section x-ref="officialReseller" class="tab-pane pt-24" id="official">
-                <div class="px-[max(3%,1rem)]">
-                    <div x-ref="map" id="map" class="h-88 w-full !scroll-mt-24 bg-gradient-to-b from-white to-blue-100"></div>
+            <section x-ref="officialReseller" class="tab-pane pt-8" id="official">
+                <div class="px-[max(1.5%,1rem)]">
+                    <div x-ref="map" id="map" class="h-96 w-full !scroll-mt-24 bg-gradient-to-b from-white to-blue-100"></div>
                 </div>
 
 
                 <!-- 1. PETA -->
-                {{-- <section id="map-section">
-                    <img src="/images/map-indonesia.svg" class="map-indonesia" alt="Peta Indonesia" class="map-image" />
-
-                    <!-- Pin contoh -->
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="aceh"
-                        alt="Pin lokasi provinsi Aceh" style="top:32.5%; left:10.1%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="sumatera-utara"
-                        alt="Pin lokasi provinsi Sumatera Utara" style="top:40.3%; left:14.9%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="sumatera-barat"
-                        alt="Pin lokasi provinsi Sumatera Barat" style="top:53.5%; left:17.3%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="riau"
-                        alt="Pin lokasi provinsi Riau" style="top:48.2%; left:19.2%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="kepulauan-riau"
-                        alt="Pin lokasi provinsi Kepulauan Riau" style="top:47%; left:24.7%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="jambi"
-                        alt="Pin lokasi provinsi Jambi" style="top:56.5%; left:21.4%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="bengkulu"
-                        alt="Pin lokasi provinsi Bengkulu" style="top:61.4%; left:19.7%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="sumatera-selatan"
-                        alt="Pin lokasi provinsi Sumatera Selatan" style="top:62%; left:24.7%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="bangka-belitung"
-                        alt="Pin lokasi provinsi Bangka Belitung" style="top:58.1%; left:27.5%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="lampung"
-                        alt="Pin lokasi provinsi Lampung" style="top:69%; left:26%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="banten"
-                        alt="Pin lokasi provinsi Banten" style="top:74.4%; left: 27.6%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="jakarta"
-                        alt="Pin lokasi provinsi Jakarta" style="top: 72.9%; left: 29%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="jawa-barat"
-                        alt="Pin lokasi provinsi Jawa Barat" style="top:75.7%; left: 30.2%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="jawa-tengah"
-                        alt="Pin lokasi provinsi Jawa Tengah" style="top:76.2%; left:35.3%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="diy"
-                        alt="Pin lokasi provinsi DI Yogyakarta" style="top:79%; left:35.7%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="jawa-timur"
-                        alt="Pin lokasi provinsi Jawa Timur" style="top:77.7%; left:39.3%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="bali"
-                        alt="Pin lokasi provinsi Bali" style="top:80.7%; left:44.55%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="ntb"
-                        alt="Pin lokasi provinsi Nusa Tenggara Barat" style="top:81.1%; left:46.5%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="ntt"
-                        alt="Pin lokasi provinsi Nusa Tenggara Timur" style="top:86%; left:60.85%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="kalimantan-barat"
-                        alt="Pin lokasi provinsi Kalimantan Barat" style="top:50.6%; left:33.9%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="kalimantan-tengah"
-                        alt="Pin lokasi provinsi Kalimantan Tengah" style="top:58.6%; left:41.65%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="kalimantan-selatan"
-                        alt="Pin lokasi provinsi Kalimantan Selatan" style="top:62.3%; left:43.8%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="kalimantan-timur"
-                        alt="Pin lokasi provinsi Kalimantan Timur" style="top:51.5%; left:48.09%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="kalimantan-utara"
-                        alt="Pin lokasi provinsi Kalimantan Utara" style="top:40.3%; left:48.4%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="sulawesi-utara"
-                        alt="Pin lokasi provinsi Sulawesi Utara" style="top:45.4%; left:62.52%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="gorontalo"
-                        alt="Pin lokasi provinsi Gorontalo" style="top:48%; left:59%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="sulawesi-tengah"
-                        alt="Pin lokasi provinsi Sulawesi Tengah" style="top:53.7%; left:53.3%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="sulawesi-barat"
-                        alt="Pin lokasi provinsi Sulawesi Barat" style="top:59.5%; left:52%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="sulawesi-selatan"
-                        alt="Pin lokasi provinsi Sulawesi Selatan" style="top:68.5%; left:52.6%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="sulawesi-tenggara"
-                        alt="Pin lokasi provinsi Sulawesi Tenggara" style="top:64.7%; left:57.9%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="maluku"
-                        alt="Pin lokasi provinsi Maluku" style="top:61.5%; left:72.2%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="maluku-utara"
-                        alt="Pin lokasi provinsi Maluku Utara" style="top:47.8%; left:67.5%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="papua"
-                        alt="Pin lokasi provinsi Papua" style="top:59.8%; left:91.5%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="papua-barat"
-                        alt="Pin lokasi provinsi Papua Barat" style="top:53.6%; left:79.2%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="papua-tengah"
-                        alt="Pin lokasi provinsi Papua Tengah" style="top:62.15%; left:82.45%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="papua-pegunungan"
-                        alt="Pin lokasi provinsi Papua Pegunungan" style="top:64.2%; left:89.09%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="papua-selatan"
-                        alt="Pin lokasi provinsi Papua Selatan" style="top:80.5%; left:91.08%;" />
-                    <img src="/icons/pin-provinsi.svg" class="pin" data-provinsi="papua-barat-daya"
-                        alt="Pin lokasi provinsi Papua Barat Daya" style="top:53.8%; left:74.45%;" />
-
-                </section> --}}
 
                 <!-- 2. DROPDOWN -->
-                <div class="flex flex-wrap gap-4 md:gap-8">
+                <div class="flex flex-wrap gap-4 md:gap-y-8 px-4 mt-6">
                     <div x-data="{
                         isOpen: false,
-                    }" class="relative w-64 pl-6 pt-8">
+                    }" class="relative w-64">
                         <!-- Button Trigger -->
                         <button @@click="isOpen = !isOpen"
                             class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center">
@@ -621,7 +502,7 @@
                     
                     <div x-data="{
                         isOpen: false,
-                    }" class="relative w-64 pl-6 pt-8">
+                    }" class="relative w-64">
                         <!-- Button Trigger -->
                         <button @@click="isOpen = !isOpen"
                             class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center">
@@ -652,28 +533,6 @@
                         </ul>
                     </div>
                 </div>
-
-
-                {{-- <div class="dropdown premium-dropdown">
-                    <button class="btn btn-premium dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Pilih Provinsi
-                        <span class="arrow"></span>
-                    </button>
-                    <ul class="dropdown-menu scrollable-dropdown">
-                        <li><a class="dropdown-item filter-province" data-id="">Semua Provinsi</a></li>
-                        @foreach ($provinces as $province)
-                            <li>
-                                <a class="dropdown-item filter-province" data-id="{{ $province->id }}">
-                                    {{ $province->name }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-
-                </div> --}}
-
-
 
                 <!-- 3. DAFTAR TOKO -->
                 <div class="store-grid" id="storeContainer">
@@ -707,91 +566,6 @@
     @endpush
     @push("link")
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    @endpush
-
-    @push("bottom-script")
-        <script defer>
-
-            // window.markers = {}
-            
-            // setTimeout(() => {
-            //     console.log(window.L)
-
-            //     // Inisialisasi peta di tengah Indonesia
-            //     var map = L?.map('map').setView([-2.4289, 108.0149], 5);
-
-            //     window.map = map
-    
-            //     // Tambahkan tile layer dari OpenStreetMap
-            //     L?.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            //         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            //     }).addTo(map);
-
-            //     map.on("click", e => {
-            //         console.log("YOUR CLICKED:", e)
-            //     })
-
-            //     // const latlng = [
-            //     //     [-6.245374173091761, 106.99056241157128]
-            //     // ]
-
-            //     const stores = @js($stores);
-
-            //     console.log({ stores })
-
-            //     const { markers } = window
-
-                // stores.forEach((store, i) => {
-
-                //     const { id, lat, lng, zoom, title, description, address } = store
-
-                //     const marker = L.marker([lat, lng], {
-                //         title, riseOnHover: true, draggable: false,
-                //     }).bindPopup(`
-                //         <h5 class="font-bold text-blue-200">${ title }</h5>
-                //         <p>${ description }</p>
-                //         <p>${ address }</p>
-                //     `).addTo(map);
-
-                //     marker.on("popupopen", e => {
-                //         if (window.isRequestFocusMarker) return window.isRequestFocusMarker = false
-
-                //         console.log("OPEN MANUAL", e)
-                //         window.selectedStoreId = id
-                //     })
-
-                //     marker.on("popupclose", () => {
-                //         // delete selectedStoreId
-                //         window.selectedStoreId = 0
-                //     })
-
-                //     markers[id] = marker
-
-            //         // marker.bindPopup("abvcd")
-                    
-            //         // marker
-            //         // console.log({ marker })
-            //         // if (i % 2) {
-                        
-            //         // } else {
-
-            //         //     const popup = L.popup([lat, lng], {
-            //         //         content: title
-            //         //     }).addTo(map)
-            //         // }
-            //     })
-    
-            //     // Muat data toko dari API dan tambahkan pin
-            //     // fetch('/api/stores')
-            //     //     .then(response => response.json())
-            //     //     .then(data => {
-            //     //         data.forEach(store => {
-            //     //             var marker = L.marker([store.latitude, store.longitude]).addTo(map);
-            //     //             marker.bindPopup(`<b>${store.name}</b><br>${store.address}`);
-            //     //         });
-            //     //     });
-            // }, 1000);
-        </script>
     @endpush
 
     <script>
@@ -863,10 +637,6 @@
             });
         });
     </script>
-
-
-
-
 
 
 
