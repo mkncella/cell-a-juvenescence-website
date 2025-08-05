@@ -46,8 +46,8 @@
 </script> --}}
 
 
-<nav x-data="{ open: false }" class="bg-white shadow-md fixed top-0 left-0 right-0 z-[1000]">
-    <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
+<nav x-data="{ open: false }" class="bg-white shadow-md fixed top-0 left-0 right-0 z-[1001]">
+    <div class=" max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
         <!-- Logo -->
         <a href="/">
             <img src="/icons/cella.png" alt="Cell-a Logo" class="w-[120px] h-auto object-contain" />
