@@ -1,4 +1,4 @@
-<footer class="footer-full">
+<footer class="footer-full relative">
     <div class="footer-wrapper">
         <div class="footer-brand">
             <h2 class="footer-heading">

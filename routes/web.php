@@ -535,6 +535,8 @@ Route::get('/indonesia-map', function () {
             "zoom" => "12",
             "province" => "DKI Jakarta",
             "city" => "Jakarta Selatan",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
         ],
         [
             "id" => 2,
@@ -547,6 +549,8 @@ Route::get('/indonesia-map', function () {
             "zoom" => "12",
             "province" => "DKI Jakarta",
             "city" => "Jakarta Pusat",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
         ],
         [
             "id" => 3,
@@ -559,6 +563,8 @@ Route::get('/indonesia-map', function () {
             "zoom" => "13",
             "province" => "Jawa Barat",
             "city" => "Kota Bandung",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
         ],
         [
             "id" => 4,
@@ -571,6 +577,8 @@ Route::get('/indonesia-map', function () {
             "zoom" => "12",
             "province" => "Jawa Barat",
             "city" => "Kota Bekasi",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
         ],
         [
             "id" => 5,
@@ -583,6 +591,8 @@ Route::get('/indonesia-map', function () {
             "zoom" => "13",
             "province" => "Sumatera Utara",
             "city" => "Kota Medan",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
         ],
         [
             "id" => 6,
@@ -595,6 +605,8 @@ Route::get('/indonesia-map', function () {
             "zoom" => "14.33",
             "province" => "Sumatera Utara",
             "city" => "Kabupaten Deli Serdang",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
         ],
     ];
 

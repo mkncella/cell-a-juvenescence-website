@@ -20,3 +20,108 @@
 html, body {
     @apply scroll-smooth;
 }
+/* 
+@keyframes borderLoop {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 400% 0%;
+  }
+}
+@utility animate-border {
+  background: linear-gradient(90deg, #1A57DB, #5EA9FF, #1A57DB, #5EA9FF);
+
+  background-size: 400% 100%;
+  animation: borderLoop 3s linear infinite;
+  animation-play-state: paused;
+  border-radius: 1rem; 
+} */
+
+@property --angle-1 {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes animate-card-spin-1 {
+    from {
+        --angle-1: 0deg;
+    } to {
+        --angle-1: 360deg;
+    }
+}
+
+.conn-card-spin-1 {
+    position: relative;
+    
+    &::after, &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        /* padding: 0; */
+        /* background: linear-gradient(90deg, #1A57DB, #5EA9FF, #1A57DB); */
+        background-image: conic-gradient(from var(--angle-1), transparent 70%, rgb(3, 3, 255));
+        border-radius: 1rem;
+        animation: animate-card-spin-1 1s linear infinite;
+        z-index: 1;
+        transition: all 5s;
+    }
+
+    &:hover {
+        &::before {
+            filter: blur(1rem);
+            opacity: .5;
+        }
+
+        &::after, &::before {
+            animation-play-state: running;
+        }
+    }
+    
+    &::before {
+        opacity: 0;
+    }
+}
+
+.card-spin-1 {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+
+    &::before, &::after {
+        position: absolute;
+        content: '';
+        height: 100%;
+        width: 100%;
+        /* background-color: red; */
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        z-index: 2;
+        padding: .25rem;
+    }
+}
+
+@keyframes borderLoop {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 400% 0%;
+  }
+}
+
+@utility animate-border {
+  background: linear-gradient(90deg, #1A57DB, #5EA9FF, #1A57DB, #5EA9FF);
+  /* background: linear-gradient(135deg, #A2C5FF 0%, #D8E9FF 50%, #E2EEFF 10s0%); */
+
+  background-size: 400% 100%;
+  animation: borderLoop 3s linear infinite;
+  animation-play-state: paused;
+  border-radius: 1rem; /* biar ngikutin card */
+}
+
+/* .card-border:hover .animate-border {
+  animation-play-state: running;
+} */

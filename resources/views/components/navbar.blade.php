@@ -69,9 +69,9 @@
             <div class="relative group">
                 <span class="cursor-pointer transition-all hover:text-blue-600">Our Programs</span>
                 <div class="absolute hidden gap-2 group-hover:block bg-white shadow-md p-2 rounded-md z-50 min-w-[150px] text-left">
-                    {{-- <a href="/reseller-cell-a" class="block px-4 py-2 text-sm hover:bg-gray-100">Reseller</a> --}}
+                    {{-- <a href="/reseller-indonesia" class="block px-4 py-2 text-sm hover:bg-gray-100">Reseller</a> --}}
                     {{-- <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Affiliate</a> --}}
-                    <x-nav-link href="/reseller-fix" label="Reseller" mobile />
+                    <x-nav-link href="/indonesia-map" label="Reseller" mobile />
                     <x-nav-link href="#" label="Our Programs" mobile />
                 </div>
             </div>
@@ -94,7 +94,7 @@
         <x-nav-link href="/essentials" label="Essentials" mobile />
         <div class="space-y-1">
             <span class="font-medium text-gray-700">Our Programs</span>
-            <a href="/reseller-cell-a" class="block text-sm pl-4 text-gray-600 hover:text-blue-500">Reseller</a>
+            <a href="/indonesia-map" class="block text-sm pl-4 text-gray-600 hover:text-blue-500">Reseller</a>
             <a href="#" class="block text-sm pl-4 text-gray-600 hover:text-blue-500">Affiliate</a>
         </div>
         <x-nav-link href="/beauty-community" label="Beauty Community" mobile />
