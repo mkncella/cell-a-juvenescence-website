@@ -522,6 +522,82 @@ Route::get('/reseller-simple', function () {
 
 Route::get('/indonesia-map', function () {
 
+    $rewards = [
+        [
+            'id' => 1,
+            'level' => 1,
+            'title' => 'Starter Glow',
+            'requirement' => 'Jual 10 produk skincare dalam 1 bulan',
+            'reward' => 'Voucher belanja Rp50.000',
+            'bgColor' => 'bg-pink-500',
+        ],
+        [
+            'id' => 2,
+            'level' => 2,
+            'title' => 'Pejuang Lembaran',
+            'requirement' => 'Capai total penjualan Rp2.000.000',
+            'reward' => 'Produk skincare gratis senilai Rp150.000',
+            'bgColor' => 'bg-yellow-500',
+        ],
+        [
+            'id' => 3,
+            'level' => 3,
+            'title' => 'Ratu Kulit Glowing',
+            'requirement' => 'Jual 50 produk kosmetik',
+            'reward' => 'Paket skincare eksklusif + sertifikat glowing',
+            'bgColor' => 'bg-purple-500',
+        ],
+        [
+            'id' => 4,
+            'level' => 4,
+            'title' => 'Bos Kecil',
+            'requirement' => 'Capai omzet Rp5.000.000',
+            'reward' => 'E-wallet Rp500.000',
+            'bgColor' => 'bg-indigo-500',
+        ],
+        [
+            'id' => 5,
+            'level' => 5,
+            'title' => 'Sultan Glowing',
+            'requirement' => 'Jual 100 produk dalam 2 bulan',
+            'reward' => 'Jam tangan branded kece badai',
+            'bgColor' => 'bg-green-500',
+        ],
+        [
+            'id' => 6,
+            'level' => 6,
+            'title' => 'Queen of Sales',
+            'requirement' => 'Omzet tembus Rp10.000.000',
+            'reward' => 'Liburan 3 hari 2 malam ke Bali',
+            'bgColor' => 'bg-blue-500',
+        ],
+        [
+            'id' => 7,
+            'level' => 7,
+            'title' => 'Boss Lady',
+            'requirement' => 'Jual 200 produk dalam 3 bulan',
+            'reward' => 'Laptop baru untuk bisnis makin cuan',
+            'bgColor' => 'bg-red-500',
+        ],
+        [
+            'id' => 8,
+            'level' => 8,
+            'title' => 'Crazy Rich Reseller',
+            'requirement' => 'Omzet tembus Rp50.000.000',
+            'reward' => 'Emas 10 gram',
+            'bgColor' => 'bg-orange-500',
+        ],
+        [
+            'id' => 9,
+            'level' => 9,
+            'title' => 'The Ultimate Boss',
+            'requirement' => 'Omzet Rp100.000.000 atau lebih',
+            'reward' => 'Mobil baru Toyota Agya',
+            'bgColor' => 'bg-teal-500',
+        ]
+    ];
+
+
     $stores = [
         [
             "id" => 1,
@@ -612,7 +688,8 @@ Route::get('/indonesia-map', function () {
 
 
     return view('pages.indonesia-map', [
-        "stores" => $stores
+        "stores" => $stores,
+        "rewards" => $rewards
     ]);
 });
 

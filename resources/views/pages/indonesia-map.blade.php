@@ -15,6 +15,7 @@
 
         <div class="tab-content" x-data="() => ({
             stores: @js($stores),
+            rewards: @js($rewards),
             markers: {},
             isRequestFocusMarker: false,
             selectedStoreId: 0,
@@ -573,7 +574,7 @@
                     </div>
                 </section>
 
-                <section x-show="true" class="reward-section py-16 px-4 sm:px-6 lg:px-8 bg-blue-50" x-data="{ rewards: [
+                <section x-show="false" class="reward-section py-16 px-4 sm:px-6 lg:px-8 bg-blue-50" x-data="{ rewards: [
                     { title: 'Voucher Diskon Keren', detail: 'Belanja makin asyik—koinmu bisa ditukar jadi voucher diskon besar untuk semua produk.' },
                     { title: 'Gratisan Cantik', detail: 'Kumpulin poin, dapetin produk gratis atau sample limited-edition setiap bulannya.' },
                     { title: 'Jadi VIP Cell~a', detail: 'Raih status VIP, dapat pre-order duluan, undangan ke event, dan promo rahasia.' },
@@ -608,6 +609,94 @@
                             </div>
                         </template>
                     </div>
+                </section>
+
+                <section x-show="true" class="reward-section py-16 px-4 mb-12 sm:px-6 lg:px-8 bg-blue-50 max-w-2xl mx-auto rounded-2xl shadow-lg p-6" x-data="{
+                    {{-- rewards: [
+                        { id: 1, title: 'Level 1 - Pemula Glow', requirement: 'Jual 10 produk', prize: 'Voucher Belanja 50k', icon: 'fa-solid fa-gift', bgColor: 'bg-pink-500' },
+                        { id: 2, title: 'Level 2 - Rising Star', requirement: 'Jual 25 produk', prize: 'Skincare Premium', icon: 'fa-solid fa-star', bgColor: 'bg-yellow-500' },
+                        { id: 3, title: 'Level 3 - Queen Glow', requirement: 'Jual 50 produk', prize: 'Hair Dryer Modern', icon: 'fa-solid fa-wind', bgColor: 'bg-purple-500' },
+                        { id: 4, title: 'Level 4 - Glam Boss', requirement: 'Jual 80 produk', prize: 'Makeup Set Eksklusif', icon: 'fa-solid fa-magic', bgColor: 'bg-indigo-500' },
+                        { id: 5, title: 'Level 5 - Diva', requirement: 'Jual 120 produk', prize: 'Smartwatch', icon: 'fa-solid fa-clock', bgColor: 'bg-green-500' },
+                        { id: 6, title: 'Level 6 - Superstar', requirement: 'Jual 170 produk', prize: 'Smartphone', icon: 'fa-solid fa-mobile', bgColor: 'bg-blue-500' },
+                        { id: 7, title: 'Level 7 - Royal Glow', requirement: 'Jual 230 produk', prize: 'Laptop', icon: 'fa-solid fa-laptop', bgColor: 'bg-red-500' },
+                        { id: 8, title: 'Level 8 - Diamond Queen', requirement: 'Jual 300 produk', prize: 'Liburan Bali', icon: 'fa-solid fa-umbrella-beach', bgColor: 'bg-orange-500' },
+                        { id: 9, title: 'Level 9 - Legend', requirement: 'Jual 500 produk', prize: 'Mobil', icon: 'fa-solid fa-car', bgColor: 'bg-teal-500' },
+                    ], --}}
+                    currentIndex: 0,
+                    setIndex(i) { this.currentIndex = i },
+                    next() { if (this.currentIndex < this.rewards.length - 1) this.currentIndex++ },
+                    prev() { if (this.currentIndex > 0) this.currentIndex-- }
+                }">
+                    {{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <template x-for="reward in rewards" x-bind:key="reward.level">
+                            <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition flex flex-col">
+                                <!-- Header -->
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center"
+                                        :class="reward.bgColor">
+                                        <i :class="reward.icon" class="text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-gray-800" x-text="reward.title"></h3>
+                                </div>
+
+                                <!-- Requirement -->
+                                <p class="text-gray-500 text-sm mb-2">
+                                    Syarat: <span class="font-semibold" x-text="reward.requirement"></span>
+                                </p>
+
+                                <!-- Prize -->
+                                <p class="text-gray-700 mb-4">
+                                    Hadiah: <span class="font-semibold text-green-600" x-text="reward.prize"></span>
+                                </p>
+
+                                <!-- Action buttons -->
+                                <div class="mt-auto flex gap-2">
+                                    <button class="flex-1 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition">
+                                        Ambil Reward
+                                    </button>
+                                    <button class="flex-1 border border-red-400 text-red-500 py-2 px-4 rounded-lg hover:bg-red-50 transition">
+                                        Lewati
+                                    </button>
+                                </div>
+                            </div>
+                        </template>
+                    </div> --}}
+                    <!-- Head: Level List -->
+                    <div class="flex gap-3 overflow-x-auto pb-2 mb-4 scrollbar-hide">
+                        <template x-for="(reward, i) in rewards" :key="reward.id">
+                            <button 
+                                class="flex-shrink-0 px-4 py-2 rounded-full border"
+                                :class="currentIndex === i ? 'bg-pink-500 text-white border-pink-500' : 'bg-gray-100 text-gray-700 border-gray-300'"
+                                @@click="setIndex(i)"
+                                x-text="'Lv ' + reward.id"
+                            ></button>
+                        </template>
+                    </div>
+
+                    <!-- Body: Reward Detail -->
+                    <div class="text-center">
+                        <div class="flex justify-center mb-4">
+                            <div class="w-16 h-16 flex items-center justify-center rounded-full text-white text-2xl"
+                                :class="rewards[currentIndex].bgColor">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2" x-text="rewards[currentIndex].title"></h3>
+                        <p class="text-gray-500 mb-1">
+                            Syarat: <span class="font-semibold" x-text="rewards[currentIndex].requirement"></span>
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Hadiah: <span class="font-semibold text-green-600" x-text="rewards[currentIndex].reward"></span>
+                        </p>
+                    </div>
+
+                    <!-- Footer: Navigation Buttons -->
+                    <div class="flex justify-between mt-6">
+                        <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300" @@click="prev()">Prev</button>
+                        <button class="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600" @@click="next()">Next</button>
+                    </div>
+
                 </section>
 
 
