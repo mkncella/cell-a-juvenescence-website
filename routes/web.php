@@ -693,6 +693,179 @@ Route::get('/indonesia-map', function () {
     ]);
 });
 
+Route::get('/indonesia-map-2', function () {
+
+    $rewards = [
+        [
+            'id' => 1,
+            'level' => 1,
+            'title' => 'Starter Glow',
+            'requirement' => 'Jual 10 produk skincare dalam 1 bulan',
+            'reward' => 'Voucher belanja Rp50.000',
+            'bgColor' => 'bg-pink-500',
+        ],
+        [
+            'id' => 2,
+            'level' => 2,
+            'title' => 'Pejuang Lembaran',
+            'requirement' => 'Capai total penjualan Rp2.000.000',
+            'reward' => 'Produk skincare gratis senilai Rp150.000',
+            'bgColor' => 'bg-yellow-500',
+        ],
+        [
+            'id' => 3,
+            'level' => 3,
+            'title' => 'Ratu Kulit Glowing',
+            'requirement' => 'Jual 50 produk kosmetik',
+            'reward' => 'Paket skincare eksklusif + sertifikat glowing',
+            'bgColor' => 'bg-purple-500',
+        ],
+        [
+            'id' => 4,
+            'level' => 4,
+            'title' => 'Bos Kecil',
+            'requirement' => 'Capai omzet Rp5.000.000',
+            'reward' => 'E-wallet Rp500.000',
+            'bgColor' => 'bg-indigo-500',
+        ],
+        [
+            'id' => 5,
+            'level' => 5,
+            'title' => 'Sultan Glowing',
+            'requirement' => 'Jual 100 produk dalam 2 bulan',
+            'reward' => 'Jam tangan branded kece badai',
+            'bgColor' => 'bg-green-500',
+        ],
+        [
+            'id' => 6,
+            'level' => 6,
+            'title' => 'Queen of Sales',
+            'requirement' => 'Omzet tembus Rp10.000.000',
+            'reward' => 'Liburan 3 hari 2 malam ke Bali',
+            'bgColor' => 'bg-blue-500',
+        ],
+        [
+            'id' => 7,
+            'level' => 7,
+            'title' => 'Boss Lady',
+            'requirement' => 'Jual 200 produk dalam 3 bulan',
+            'reward' => 'Laptop baru untuk bisnis makin cuan',
+            'bgColor' => 'bg-red-500',
+        ],
+        [
+            'id' => 8,
+            'level' => 8,
+            'title' => 'Crazy Rich Reseller',
+            'requirement' => 'Omzet tembus Rp50.000.000',
+            'reward' => 'Emas 10 gram',
+            'bgColor' => 'bg-orange-500',
+        ],
+        [
+            'id' => 9,
+            'level' => 9,
+            'title' => 'The Ultimate Boss',
+            'requirement' => 'Omzet Rp100.000.000 atau lebih',
+            'reward' => 'Mobil baru Toyota Agya',
+            'bgColor' => 'bg-teal-500',
+        ]
+    ];
+
+
+    $stores = [
+        [
+            "id" => 1,
+            "title" => "Cantika kosmetik",
+            "description" => "Toko termurah terasli",
+            "address" => "Pasar Rumput, BL00DCT157, Jl. Sultan Agung, RT.1/RW.3, Ps. Manggis, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12970",
+            "link" => "https://maps.app.goo.gl/NnARdbv6kTSVz6BNA",
+            // "link" => "https://maps.app.goo.gl/Ggo6kghKVwtCnMA26",
+            "lat" => "-6.2075605",
+            "lng" => "106.6968829",
+            "zoom" => "12",
+            "province" => "DKI Jakarta",
+            "city" => "Jakarta Selatan",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
+        ],
+        [
+            "id" => 2,
+            "title" => "TOKO DELIMA KOSMETIK",
+            "description" => "Toko Termurah dijamin murah",
+            "address" => "Gg. Lurah Jl. Petamburan No.04B 6, RT.6/RW.1, Petamburan, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10260",
+            "link" => "https://maps.app.goo.gl/PxAy55fiTV9T12ws6",
+            "lat" => "-6.1912006",
+            "lng" => "106.6650367",
+            "zoom" => "12",
+            "province" => "DKI Jakarta",
+            "city" => "Jakarta Pusat",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
+        ],
+        [
+            "id" => 3,
+            "title" => "Elsa Cosmetics",
+            "description" => "Toko Termurah dijamin murah Di Bandung",
+            "address" => "Jl. Jamika No.27, Jamika, Kec. Bojongloa Kaler, Kota Bandung, Jawa Barat 40231",
+            "link" => "https://maps.app.goo.gl/1TVjtScNbE9Sqh317",
+            "lat" => "-6.9202921",
+            "lng" => "107.5143635",
+            "zoom" => "13",
+            "province" => "Jawa Barat",
+            "city" => "Kota Bandung",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
+        ],
+        [
+            "id" => 4,
+            "title" => "Yamela Kosmetik",
+            "description" => "Toko Termurah terkeren murah Di Bekasi",
+            "address" => "Jl. Pahlawan No.20, RT.001/RW.007, Duren Jaya, Kec. Bekasi Tim., Kota Bks, Jawa Barat 17111",
+            "link" => "https://maps.app.goo.gl/wvSabvggPk9w6sBh8",
+            "lat" => "-6.2692317",
+            "lng" => "106.8903495",
+            "zoom" => "12",
+            "province" => "Jawa Barat",
+            "city" => "Kota Bekasi",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
+        ],
+        [
+            "id" => 5,
+            "title" => "Olla Kosmetik",
+            "description" => "Toko Termurah terkeren murah se Medan",
+            "address" => "Helvetia Tengah, Kec. Medan Helvetia, Kota Medan, Sumatera Utara 20124",
+            "link" => "https://maps.app.goo.gl/m9F3AmhEwJe4KZiK68",
+            "lat" => "3.6139058",
+            "lng" => "98.5683502",
+            "zoom" => "13",
+            "province" => "Sumatera Utara",
+            "city" => "Kota Medan",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
+        ],
+        [
+            "id" => 6,
+            "title" => "PADUSHE KOSMETIK",
+            "description" => "Toko Termurah terkeren murah se deliserang",
+            "address" => "Jl. Pertahanan No.17, Patumbak Kp., Kec. Patumbak, Kabupaten Deli Serdang, Sumatera Utara",
+            "link" => "https://maps.app.goo.gl/JEpF4U3AsC96HoDv9",
+            "lat" => "3.513004",
+            "lng" => "98.6942425",
+            "zoom" => "14.33",
+            "province" => "Sumatera Utara",
+            "city" => "Kabupaten Deli Serdang",
+            "link_shopee" => "https://shopee.co.id/livibeautyhouse",
+            "link_tiktok" => "https://www.tiktok.com/@renafactoryoutlet__"
+        ],
+    ];
+
+
+    return view('pages.indonesia-map-2', [
+        "stores" => $stores,
+        "rewards" => $rewards
+    ]);
+});
+
 // Route::post("/get-latlng-by-goggle-map-link");
 
 Route::get("/get-latlng-by-goggle-map-link", function (Request $request) {
