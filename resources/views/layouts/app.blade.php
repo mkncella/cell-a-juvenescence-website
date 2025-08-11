@@ -82,7 +82,7 @@
     @include('components.navbar')
 
     {{-- Main content --}}
-    <main>
+    <main class="relative">
         @yield('content')
     </main>
 
