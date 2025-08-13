@@ -18,6 +18,7 @@
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.min.css
         " rel="stylesheet">
+    {{-- <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script> --}}
     @stack("script")
     
     @vite(['resources/css/app.css','resources/js/app.js'])
@@ -41,6 +42,7 @@
     <link rel="stylesheet" href="{{ asset('css/privacy-policy.css') }}">
     <link rel="stylesheet" href="{{ asset('css/reseller-join-us.css') }}">
     <link rel="stylesheet" href="{{ asset('css/reseller-official.css') }}">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" /> --}}
 </head>
 
 <body>

@@ -348,7 +348,7 @@
             }
         }
     })" >
-        <div class="fixed top-20 w-full flex items-center justify-center z-[1002] bg-white border-b pt-2 pb-2 border-gray-200">
+        <div class="fixed top-14 w-full flex items-center justify-center z-[1002] bg-white border-b pt-2 pb-2 border-gray-200">
             <div class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 ">
                 <button class="p-1 px-2 border text-sm font-semibold transition-all duration-75" :class="activeTab == 'official' ? 'bg-gray-300' : 'hover:bg-gray-200'" @click="setActiveTab('official')">Official Reseller</button>
                 <button class="p-1 px-2 border text-sm font-semibold transition-all duration-75" :class="activeTab == 'join' ? 'bg-gray-300' : 'hover:bg-gray-200'" @click="setActiveTab('join')">Join Us</button>

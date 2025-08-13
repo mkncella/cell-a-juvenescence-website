@@ -6,7 +6,6 @@ use App\Models\OfficialReseller;
 use App\Models\Province;
 use Illuminate\Http\Request; // ✅ Benar
 
-
 class ResellerController extends Controller
 {
     public function index(Request $request)
