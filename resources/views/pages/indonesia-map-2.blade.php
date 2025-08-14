@@ -23,12 +23,15 @@
         setActiveTab(name) {
             this.activeTab = name
 
-            localStorage.setItem('activeTab', this.activeTab)
-
-
-            const _name = name + 'Reseller'
-
-            console.log('name:', name)
+            
+            {{-- localStorage.setItem('activeTab', this.activeTab) --}}
+            
+            
+            if (name == this.activeTab) {
+                console.log('name:', name)
+                const newSearch = (location.search ? location.search.replace(/tab=(?:official|join)/g, '') : '?') + 'tab=' + name
+                history.pushState([], false, newSearch)
+            }
             
             window.scrollTo({ top: 0, behavior: 'smooth' })
         },
@@ -106,22 +109,6 @@
                     {{-- [-2.4289, 108.0149], 5 --}}
                     [-2.5, 118.0], 4
                 );
-
-                let activeTab = null
-
-                try {
-                    activeTab = localStorage.getItem('activeTab')
-
-                    if (!activeTab) {
-                        throw new Error('tab localstorage is null')
-                    }
-                    
-                    this.activeTab = activeTab
-
-                } catch(e) {
-                    console.log('error msg', e)
-                    this.activeTab = 'official'
-                }
 
                 {{-- close popup while zoom. beause the popup position gonna be broken --}}
                 let popupCloseTimeout = null
@@ -274,6 +261,20 @@
                         this.openPopup();
                     });
                 });
+
+                console.log('GAGAGAGAG')
+
+
+                // set tab
+                const urlSearchParams = new URLSearchParams(location.search);
+                const url_param = {};
+                urlSearchParams.forEach((val, key) => ((url_param[key] = val), true));
+
+                const { tab } = url_param
+
+                this.setActiveTab(['official', 'join'].includes(tab) ? tab : 'official')
+                
+                
 
             }, 500)
 

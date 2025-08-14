@@ -216,6 +216,11 @@
 
 
                 </li> --}}
+                <li>
+                    <x-navbar-link href="/essentials">
+                        Essentials
+                    </x-navbar-link>
+                </li>
                 <li class="inline-flex items-center">
                     <x-dropdown trigger="hover" contextId="BecameOurPartner" placement="bottom-start">
                         <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
@@ -235,12 +240,12 @@
                                         <x-slot:dropdownMenu>
                                             <ul class="py-2 text-sm text-gray-700">
                                                 <li>
-                                                    <x-navbar-link href="/indonesia-map?official" >
+                                                    <x-navbar-link href="/indonesia-map-2?tab=official" >
                                                         Official
                                                     </x-navbar-link>
                                                 </li>
                                                 <li>
-                                                    <x-navbar-link href="/indonesia-map?join-us">
+                                                    <x-navbar-link href="/indonesia-map-2?tab=join">
                                                         Join Us
                                                     </x-navbar-link>
                                                 </li>
@@ -269,16 +274,6 @@
                             </ul>
                         </x-slot:dropdownMenu>
                     </x-dropdown>
-                </li>
-                <li>
-                    <x-navbar-link href="/essentials">
-                        Essentials
-                    </x-navbar-link>
-                </li>
-                <li>
-                    <x-navbar-link href="/indonesia-map-2">
-                        Become Our Partne
-                    </x-navbar-link>
                 </li>
                 <li>
                     <x-navbar-link href="/">
