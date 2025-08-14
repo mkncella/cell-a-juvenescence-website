@@ -273,8 +273,6 @@
                 const { tab } = url_param
 
                 this.setActiveTab(['official', 'join'].includes(tab) ? tab : 'official')
-                
-                
 
             }, 500)
 

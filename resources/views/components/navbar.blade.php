@@ -280,6 +280,52 @@
                         Beauty Community
                     </x-navbar-link>
                 </li>
+                <li>
+                    <x-dropdown trigger="hover" placement="bottom-end">
+                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }">
+                            Membership Loyalty
+                            <x-icons.v/>
+                        </x-slot:button>
+
+                        <x-slot:dropdownMenu>
+                            <ul class="py-2 text-sm text-gray-700">
+                                <li>
+                                    <x-navbar-link href="#">
+                                        Programs
+                                    </x-navbar-link>
+                                </li>
+                                <li>
+                                    <x-navbar-link href="#">
+                                        Join Us
+                                    </x-navbar-link>
+                                </li>
+                            </ul>
+                        </x-slot:dropdownMenu>
+                    </x-dropdown>
+                </li>
+                <li>
+                    <x-dropdown trigger="hover" placement="bottom-end">
+                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }">
+                            Beauty Journals
+                            <x-icons.v/>
+                        </x-slot:button>
+
+                        <x-slot:dropdownMenu>
+                            <ul class="py-2 text-sm text-gray-700">
+                                <li>
+                                    <x-navbar-link href="#">
+                                        Articles
+                                    </x-navbar-link>
+                                </li>
+                                <li>
+                                    <x-navbar-link href="#">
+                                        News
+                                    </x-navbar-link>
+                                </li>
+                            </ul>
+                        </x-slot:dropdownMenu>
+                    </x-dropdown>
+                </li>
             </ul>
         </div>
     </div>
