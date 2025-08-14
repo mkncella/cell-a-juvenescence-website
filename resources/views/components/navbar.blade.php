@@ -140,10 +140,6 @@
 </nav>
 
 
-{{-- <template x-if="true">
-
-    
-</template> --}}
 <nav x-data="{ 
     currentPath: window.location.pathname,
     isActive(href) {
