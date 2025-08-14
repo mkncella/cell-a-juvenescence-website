@@ -58,7 +58,7 @@
 }">
 
     <button
-        {{ $button->attributes->merge(['class' => 'flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100']) }}
+        {{ $button->attributes->merge(['class' => 'block py-1 !no-underline rounded-sm items-center justify-center md:p-0 md:text-sm flex']) }}
         type="button" x-ref="button"
 
         @if ($trigger == 'click')
@@ -73,7 +73,7 @@
     @isset($dropdownMenu)
     
       <div 
-          {{ $dropdownMenu->attributes->merge(['class' => 'absolute z-12 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44']) }}
+          {{ $dropdownMenu->attributes->merge(['class' => 'absolute z-12 bg-white divide-y divide-gray-100 rounded-lg shadow-lg']) }}
           x-show="isOpen"
           x-transition
           x-cloak

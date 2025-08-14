@@ -147,8 +147,8 @@
         if (href !== '/' && this.currentPath.startsWith(href)) return true;
         return false;
     }
-}" class="bg-white border-gray-200 fixed top-0 left-0 w-[100dvw] z-[1005] py-2">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
+}" x-ref="navbar" class="bg-white border-gray-200 fixed top-0 left-0 w-[100dvw] z-[1005] py-2">
+    <div class="max-w-screen-xl flex items-center justify-between mx-auto px-4">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/icons/cella.png" alt="Cell-a Logo" class="w-[clamp(4rem,6vw,5rem)] object-center object-cover" />
         </a>
@@ -160,11 +160,15 @@
             </svg>
         </button>
 
-        <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
-            <ul class="flex flex-col font-medium px-4 md:p-0 my-2 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
-                <li>
+        <div class="hidden w-full md:block md:w-auto fixed top-0 right-0" id="navbar-multi-level" :style="`
+            top: ${ $refs.navbar.getBoundingClientRect().top }px;
+        `">
+            <ul class="flex flex-col font-medium px-4 md:p-0 my-2 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:items-center md:my-0 md:border-0 md:bg-white">
+                <li class="inline-flex md:justify-center items-center">
                     <x-navbar-link href="/about-us">
-                        About Us
+                        <span>
+                            About Us
+                        </span>
                     </x-navbar-link>
                 </li>
                 {{-- <li>
@@ -216,25 +220,29 @@
 
 
                 </li> --}}
-                <li>
+                <li class="inline-flex md:justify-center items-center">
                     <x-navbar-link href="/essentials">
-                        Essentials
+                        <span>
+                            Essentials
+                        </span>
                     </x-navbar-link>
                 </li>
-                <li class="inline-flex items-center">
-                    <x-dropdown trigger="hover" contextId="BecameOurPartner" placement="bottom-start">
+                <li class="inline-flex md:justify-center items-center">
+                    <x-dropdown trigger="hover" placement="bottom-start">
                         <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
                             Became Our Partner
                             <x-icons.v></x-icons.v>
                         </x-slot:button>
 
-                        <x-slot:dropdownMenu>
+                        <x-slot:dropdownMenu x-init="isOpen = false">
                             <ul class="text-sm text-gray-700 !pl-0">
                                 <li>
-                                    <x-dropdown trigger="hover" contextId="BecameOurPartner-reseller">
-                                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }">
-                                            Reseller
-                                            <x-icons.v></x-icons.v>
+                                    <x-dropdown trigger="hover">
+                                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-3 !px-4 flex gap-2 items-center md:!text-sm">
+                                            <span>
+                                                Reseller
+                                            </span>
+                                            <x-icons.v class="flex items-center justify-center"></x-icons.v>
                                         </x-slot:button>
 
                                         <x-slot:dropdownMenu>
@@ -255,7 +263,7 @@
                                 </li>
                                 <li>
                                     <x-dropdown trigger="hover">
-                                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }">
+                                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
                                             Affiliate
                                             <x-icons.v/>
                                         </x-slot:button>
@@ -275,19 +283,21 @@
                         </x-slot:dropdownMenu>
                     </x-dropdown>
                 </li>
-                <li>
+                <li class="inline-flex md:justify-center items-center">
                     <x-navbar-link href="/">
-                        Beauty Community
+                        <span>
+                            Beauty Community
+                        </span>
                     </x-navbar-link>
                 </li>
-                <li>
+                <li class="inline-flex md:justify-center items-center">
                     <x-dropdown trigger="hover" placement="bottom-end">
-                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }">
+                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
                             Membership Loyalty
                             <x-icons.v/>
                         </x-slot:button>
 
-                        <x-slot:dropdownMenu>
+                        <x-slot:dropdownMenu x-init="isOpen = false">
                             <ul class="py-2 text-sm text-gray-700">
                                 <li>
                                     <x-navbar-link href="#">
@@ -303,9 +313,9 @@
                         </x-slot:dropdownMenu>
                     </x-dropdown>
                 </li>
-                <li>
+                <li class="inline-flex md:justify-center items-center">
                     <x-dropdown trigger="hover" placement="bottom-end">
-                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }">
+                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
                             Beauty Journals
                             <x-icons.v/>
                         </x-slot:button>

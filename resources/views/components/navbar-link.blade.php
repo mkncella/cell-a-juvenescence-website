@@ -8,7 +8,7 @@
     $isActive = $path == $href;
 @endphp
 
-<a {{ $attributes->merge(['class' => 'block py-1 !no-underline rounded-sm md:p-0 md:text-sm flex hover:!text-[#557fff]'])->merge(['class' => $isActive ? '!text-[#557fff] pointer-events-none' : '!text-gray-900 md:!border-0 md:hover:!text-blue-700'])->merge(['href' => $href]) }}>
+<a {{ $attributes->merge(['class' => 'block py-1 !no-underline rounded-sm md:p-0 md:text-sm flex items-center justify-center hover:!text-[#557fff]'])->merge(['class' => $isActive ? '!text-[#557fff] pointer-events-none' : '!text-gray-900 md:!border-0 md:hover:!text-blue-700'])->merge(['href' => $href]) }}>
     {{ $slot }}
 </a>
 
