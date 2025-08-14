@@ -4,10 +4,14 @@ module.exports = {
     './resources/**/*.blade.php',
     './resources/**/*.js'
   ],
-  theme: {
-    extend: {},
-  },
   plugins: [
     require('flowbite/plugin')
   ],
+  theme: {
+    extend: {
+      colors: {
+        'base-color-app': '#557fff',
+      }
+    },
+  },
 };

@@ -147,79 +147,143 @@
         if (href !== '/' && this.currentPath.startsWith(href)) return true;
         return false;
     }
-}" class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 fixed top-0 left-0 w-[100dvw] z-[1005] py-2">
+}" class="bg-white border-gray-200 fixed top-0 left-0 w-[100dvw] z-[1005] py-2">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/icons/cella.png" alt="Cell-a Logo" class="w-[clamp(4rem,6vw,5rem)] object-center object-cover" />
         </a>
-        <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-multi-level" aria-expanded="false">
+
+        <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-multi-level" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
             </svg>
         </button>
+
         <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
-            <ul class="flex flex-col font-medium px-4 md:p-0 my-2 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900">
+            <ul class="flex flex-col font-medium px-4 md:p-0 my-2 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
                 <li>
-                    <a href="/" 
-                       :class="isActive('/') ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent pointer-events-none' : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'"
-                       :aria-current="isActive('/') ? 'page' : null">Home</a>
+                    <x-navbar-link href="/about-us">
+                        About Us
+                    </x-navbar-link>
                 </li>
-                <li>
-                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Dropdown <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                        </svg>
+                {{-- <li>
+
+
+                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" 
+                        data-dropdown-trigger="hover"
+                        class="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 
+                                md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">
+                        Dropdown
+                        <x-icons.v></x-icons.v>
                     </button>
+                
                     <!-- Dropdown menu -->
-                    <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLargeButton">
+                    <div id="dropdownNavbar" 
+                        class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+                        <ul class="py-2 text-sm text-gray-700 ">
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
                             </li>
                             <li aria-labelledby="dropdownNavbarLink">
-                                <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dropdown<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                                    </svg></button>
-                                <div id="doubleDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Overview</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">My downloads</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Billing</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Rewards</a>
-                                        </li>
+                                <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" 
+                                    data-dropdown-trigger="hover" 
+                                    data-dropdown-placement="right-start"
+                                    type="button"
+                                    class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100">
+                                    Became Our Partner
+                                    <svg class="w-2.5 h-2.5 ms-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                            d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+                
+                                <div id="doubleDropdown" 
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+                                    <ul class="py-2 text-sm text-gray-700">
+                                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Overview</a></li>
+                                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">My downloads</a></li>
+                                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Billing</a></li>
+                                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Rewards</a></li>
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Earnings</a>
                             </li>
                         </ul>
-                        <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-                        </div>
                     </div>
+
+
+                </li> --}}
+                <li class="inline-flex items-center">
+                    <x-dropdown trigger="hover" contextId="BecameOurPartner" placement="bottom-start">
+                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
+                            Became Our Partner
+                            <x-icons.v></x-icons.v>
+                        </x-slot:button>
+
+                        <x-slot:dropdownMenu>
+                            <ul class="text-sm text-gray-700 !pl-0">
+                                <li>
+                                    <x-dropdown trigger="hover" contextId="BecameOurPartner-reseller">
+                                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }">
+                                            Reseller
+                                            <x-icons.v></x-icons.v>
+                                        </x-slot:button>
+
+                                        <x-slot:dropdownMenu>
+                                            <ul class="py-2 text-sm text-gray-700">
+                                                <li>
+                                                    <x-navbar-link href="/indonesia-map?official" >
+                                                        Official
+                                                    </x-navbar-link>
+                                                </li>
+                                                <li>
+                                                    <x-navbar-link href="/indonesia-map?join-us">
+                                                        Join Us
+                                                    </x-navbar-link>
+                                                </li>
+                                            </ul>
+                                        </x-slot:dropdownMenu>
+                                    </x-dropdown>
+                                </li>
+                                <li>
+                                    <x-dropdown trigger="hover">
+                                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }">
+                                            Affiliate
+                                            <x-icons.v/>
+                                        </x-slot:button>
+
+                                        <x-slot:dropdownMenu>
+                                            <ul class="py-2 text-sm text-gray-700">
+                                                <li>
+                                                    <x-navbar-link href="#">
+                                                        Join Us
+                                                    </x-navbar-link>
+                                                </li>
+                                            </ul>
+                                        </x-slot:dropdownMenu>
+                                    </x-dropdown>
+                                </li>
+                            </ul>
+                        </x-slot:dropdownMenu>
+                    </x-dropdown>
                 </li>
                 <li>
-                    <a href="/services" 
-                       :class="isActive('/services') ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent pointer-events-none' : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'"
-                       :aria-current="isActive('/services') ? 'page' : null">Services</a>
+                    <x-navbar-link href="/essentials">
+                        Essentials
+                    </x-navbar-link>
                 </li>
                 <li>
-                    <a href="/pricing" 
-                       :class="isActive('/pricing') ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent pointer-events-none' : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'"
-                       :aria-current="isActive('/pricing') ? 'page' : null">Pricing</a>
+                    <x-navbar-link href="/indonesia-map-2">
+                        Become Our Partne
+                    </x-navbar-link>
                 </li>
                 <li>
-                    <a href="/contact" 
-                       :class="isActive('/contact') ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent pointer-events-none' : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'"
-                       :aria-current="isActive('/contact') ? 'page' : null">Contact</a>
+                    <x-navbar-link href="/">
+                        Beauty Community
+                    </x-navbar-link>
                 </li>
             </ul>
         </div>

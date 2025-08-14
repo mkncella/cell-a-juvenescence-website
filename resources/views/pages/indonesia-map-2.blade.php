@@ -27,6 +27,8 @@
 
 
             const _name = name + 'Reseller'
+
+            console.log('name:', name)
             
             window.scrollTo({ top: 0, behavior: 'smooth' })
         },
@@ -75,7 +77,6 @@
         init() {
 
             
-
             {{-- set regions(area) & provincies & cities --}}
             this.stores.forEach(({ province, city }) => {
 
