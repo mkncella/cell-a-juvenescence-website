@@ -32,7 +32,6 @@
         this.isOpen = false
     },
     init() {
-
         const positions = {
             bottom: 'top-full left-0',            // di bawah tombol
             'bottom-start': 'top-full left-0',    // di bawah, rata kiri
@@ -62,30 +61,33 @@
         type="button" x-ref="button"
 
         @if ($trigger == 'click')
-            @@click="() => toggle"
+            @@click="toggle()"
         @elseif ($trigger == 'hover')
-            @@mouseenter="activated"
-            @@mouseleave="deActivated"
+            @@mouseenter="activated()"
+            @@mouseleave="deActivated()"
         @endif
         
     >{{ $button }}</button>
 
     @isset($dropdownMenu)
     
-      <div 
-          {{ $dropdownMenu->attributes->merge(['class' => 'absolute z-12 bg-white divide-y divide-gray-100 rounded-lg shadow-lg']) }}
-          x-show="isOpen"
-          x-transition
-          x-cloak
-          :class="placement_class"
+        <div 
+            {{ $dropdownMenu->attributes->merge(['class' => 'absolute bg-white border border-gray-200 rounded-lg shadow-lg min-w-[200px] overflow-hidden']) }}
+            x-show="isOpen"
+            x-transition
+            x-cloak
+            :class="placement_class"
+            style="z-index: 9999 !important;"
 
-          @if ($trigger == 'click')
-              @@click="() => toggle"
-          @elseif ($trigger == 'hover')
-              @@mouseenter="activated"
-              @@mouseleave="deActivated"
-          @endif
-      >{{ $dropdownMenu }}</div>
+            @if ($trigger == 'click')
+                @@click="toggle()"
+            @elseif ($trigger == 'hover')
+                @@mouseenter="activated()"
+                @@mouseleave="deActivated()"
+            @endif
+        >
+          {{ $dropdownMenu }}
+        </div>
         
     @endisset
 

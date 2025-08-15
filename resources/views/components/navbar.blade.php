@@ -228,32 +228,30 @@
                     </x-navbar-link>
                 </li>
                 <li class="inline-flex md:justify-center items-center">
-                    <x-dropdown trigger="hover" placement="bottom-start">
+                    <x-dropdown contextId="partner" trigger="hover" placement="bottom-start">
                         <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
                             Became Our Partner
                             <x-icons.v></x-icons.v>
                         </x-slot:button>
 
-                        <x-slot:dropdownMenu x-init="isOpen = false">
-                            <ul class="text-sm text-gray-700 !pl-0">
-                                <li>
-                                    <x-dropdown trigger="hover">
-                                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-3 !px-4 flex gap-2 items-center md:!text-sm">
-                                            <span>
-                                                Reseller
-                                            </span>
-                                            <x-icons.v class="flex items-center justify-center"></x-icons.v>
+                        <x-slot:dropdownMenu>
+                            <ul class="text-sm text-gray-700 p-0 m-0">
+                                <li class="relative m-0">
+                                    <x-dropdown contextId="reseller" trigger="hover" placement="right-start">
+                                        <x-slot:button class="w-full px-4 py-2.5 text-left hover:bg-gray-50 flex items-center justify-between text-sm">
+                                            <span>Reseller</span>
+                                            <x-icons.v class="w-3 h-3 ml-2" />
                                         </x-slot:button>
 
                                         <x-slot:dropdownMenu>
-                                            <ul class="py-2 text-sm text-gray-700">
-                                                <li>
-                                                    <x-navbar-link href="/indonesia-map-2?tab=official" >
+                                            <ul class="text-sm text-gray-700 p-0 m-0">
+                                                <li class="m-0">
+                                                    <x-navbar-link href="/indonesia-map-2?tab=official" class="block px-4 py-2.5 hover:bg-gray-50 text-sm">
                                                         Official
                                                     </x-navbar-link>
                                                 </li>
-                                                <li>
-                                                    <x-navbar-link href="/indonesia-map-2?tab=join">
+                                                <li class="m-0">
+                                                    <x-navbar-link href="/indonesia-map-2?tab=join" class="block px-4 py-2.5 hover:bg-gray-50 text-sm">
                                                         Join Us
                                                     </x-navbar-link>
                                                 </li>
@@ -261,17 +259,17 @@
                                         </x-slot:dropdownMenu>
                                     </x-dropdown>
                                 </li>
-                                <li>
-                                    <x-dropdown trigger="hover">
-                                        <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
-                                            Affiliate
-                                            <x-icons.v/>
+                                <li class="relative m-0">
+                                    <x-dropdown contextId="affiliate" trigger="hover" placement="right-start">
+                                        <x-slot:button class="w-full px-4 py-2.5 text-left hover:bg-gray-50 flex items-center justify-between text-sm">
+                                            <span>Affiliate</span>
+                                            <x-icons.v class="w-3 h-3 ml-2" />
                                         </x-slot:button>
 
                                         <x-slot:dropdownMenu>
-                                            <ul class="py-2 text-sm text-gray-700">
-                                                <li>
-                                                    <x-navbar-link href="#">
+                                            <ul class="text-sm text-gray-700 p-0 m-0">
+                                                <li class="m-0">
+                                                    <x-navbar-link href="#" class="block px-4 py-2.5 hover:bg-gray-50 text-sm">
                                                         Join Us
                                                     </x-navbar-link>
                                                 </li>
@@ -291,21 +289,21 @@
                     </x-navbar-link>
                 </li>
                 <li class="inline-flex md:justify-center items-center">
-                    <x-dropdown trigger="hover" placement="bottom-end">
+                    <x-dropdown contextId="loyalty" trigger="hover" placement="bottom-end">
                         <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
                             Membership Loyalty
                             <x-icons.v/>
                         </x-slot:button>
 
-                        <x-slot:dropdownMenu x-init="isOpen = false">
-                            <ul class="py-2 text-sm text-gray-700">
-                                <li>
-                                    <x-navbar-link href="#">
+                        <x-slot:dropdownMenu>
+                            <ul class="text-sm text-gray-700 p-0 m-0">
+                                <li class="m-0">
+                                    <x-navbar-link href="#" class="block px-4 py-2.5 hover:bg-gray-50 text-sm">
                                         Programs
                                     </x-navbar-link>
                                 </li>
-                                <li>
-                                    <x-navbar-link href="#">
+                                <li class="m-0">
+                                    <x-navbar-link href="#" class="block px-4 py-2.5 hover:bg-gray-50 text-sm">
                                         Join Us
                                     </x-navbar-link>
                                 </li>
@@ -314,21 +312,21 @@
                     </x-dropdown>
                 </li>
                 <li class="inline-flex md:justify-center items-center">
-                    <x-dropdown trigger="hover" placement="bottom-end">
+                    <x-dropdown contextId="journals" trigger="hover" placement="bottom-end">
                         <x-slot:button x-bind:class="{ 'text-[#557fff]': isOpen }" class="!py-1 md:!p-0 md:!text-sm">
                             Beauty Journals
                             <x-icons.v/>
                         </x-slot:button>
 
                         <x-slot:dropdownMenu>
-                            <ul class="py-2 text-sm text-gray-700">
-                                <li>
-                                    <x-navbar-link href="#">
+                            <ul class="text-sm text-gray-700 p-0 m-0">
+                                <li class="m-0">
+                                    <x-navbar-link href="#" class="block px-4 py-2.5 hover:bg-gray-50 text-sm">
                                         Articles
                                     </x-navbar-link>
                                 </li>
-                                <li>
-                                    <x-navbar-link href="#">
+                                <li class="m-0">
+                                    <x-navbar-link href="#" class="block px-4 py-2.5 hover:bg-gray-50 text-sm">
                                         News
                                     </x-navbar-link>
                                 </li>
